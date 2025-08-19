@@ -1,0 +1,47 @@
+"use client";
+import { motion } from "framer-motion";
+import type { MotionProps, Transition } from "framer-motion";
+import { Bot, Workflow, Layers, ShieldCheck, GraduationCap, Settings } from "lucide-react";
+
+const ease: Transition["ease"] = [0.22, 1, 0.36, 1];
+const fadeUp: MotionProps = {
+  initial: { opacity: 0, y: 16 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-80px" },
+  transition: { duration: 0.6, ease },
+};
+
+export default function ServicesPage() {
+  const services = [
+    { title: "AI Strategy & Roadmaps", icon: Layers, desc: "From discovery to prioritization and ROI modeling." },
+    { title: "Model Selection & Tuning", icon: Bot, desc: "Pick and fine‑tune models that match your risk profile." },
+    { title: "Workflow Automation", icon: Workflow, desc: "Intake, triage, RPA, and agentic back‑office tasks." },
+    { title: "Data & Integrations", icon: Settings, desc: "Connect EHR/EMR, CRM, and ERP with secure patterns." },
+    { title: "Enablement & Training", icon: GraduationCap, desc: "Playbooks and workshops your team actually uses." },
+    { title: "Compliance by Design", icon: ShieldCheck, desc: "PHIPA, SOC‑2, ISO‑9001 baked into delivery." },
+  ];
+
+  return (
+    <div className="container-page py-16 md:py-24">
+      <motion.h1 {...fadeUp} className="text-4xl font-semibold tracking-tight md:text-5xl">Services</motion.h1>
+      <p className="mt-3 max-w-2xl text-muted-foreground">Designed for SMBs ready to capture value quickly—and safely.</p>
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((s) => (
+          <motion.article
+            key={s.title}
+            {...fadeUp}
+            whileHover={{ scale: 1.03 }}
+            transition={{ type: "spring", stiffness: 260, damping: 18 }}
+            className="card glow p-6 hover:shadow-xl"
+          >
+            <s.icon className="size-6 text-rose-600" />
+            <h2 className="mt-4 text-xl font-semibold">{s.title}</h2>
+            <p className="mt-2 text-muted-foreground">{s.desc}</p>
+          </motion.article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+

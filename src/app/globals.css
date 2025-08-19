@@ -1,0 +1,99 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
+
+:root {
+  --background: 0 0% 100%; /* white site background */
+  --foreground: 219 33% 15%;
+  color-scheme: light;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --border: 214.3 31.8% 91.4%;
+  --primary: 350 84% 47%; /* Ordera brand red */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 224 71% 4%;
+  --secondary-foreground: 0 0% 100%;
+  --ring: 350 84% 47%;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-border: hsl(var(--border));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-ring: hsl(var(--ring));
+  --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-ordera-serif);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Force light theme only for consistency */
+
+/* Base styles */
+* { @apply border-border; }
+html { @apply scroll-smooth antialiased; }
+body { @apply bg-background text-foreground font-sans leading-relaxed; }
+
+/* Reusable utilities */
+.container-page { @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8; }
+.card { @apply bg-card text-card-foreground rounded-2xl border shadow-sm; }
+.btn { @apply inline-flex items-center justify-center rounded-xl font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none tracking-tight text-sm; padding: 8px 18px; z-index: 0; }
+.btn-primary { @apply inline-flex items-center justify-center rounded-xl font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-gradient-to-r from-rose-500 to-rose-600 text-white; box-shadow: 0 8px 20px rgba(233,72,99,0.25); }
+.btn-primary:hover { box-shadow: 0 12px 36px rgba(233,72,99,0.45); }
+.btn-outline { @apply inline-flex items-center justify-center rounded-xl font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none border border-border bg-white text-foreground hover:bg-muted; padding: 8px 18px; }
+
+/* Soft glow helper for CTAs */
+.btn-glow { position: relative; }
+.btn-glow::after {
+  content: "";
+  position: absolute;
+  inset: -4px; /* extend outside so glow appears around */
+  border-radius: 9999px;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(233,72,99,0.46), transparent 70%);
+  filter: blur(18px);
+  opacity: 0.0;
+  transition: opacity 140ms ease, transform 140ms ease;
+  z-index: -1;
+  pointer-events: none;
+}
+.btn-glow:hover::after { opacity: 0.85; transform: scale(1.03); }
+
+/* Static glow utility for sections (always on) */
+.static-glow { position: relative; }
+.static-glow::before { content: ""; position: absolute; inset: -8px; border-radius: 16px; background: radial-gradient(70% 70% at 70% 30%, rgba(233,72,99,0.20), transparent 70%); filter: blur(16px); opacity: .9; z-index:-1; }
+
+/* Soft rose blur behind containers */
+.glow { position: relative; }
+.glow::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 16px;
+  background:
+    radial-gradient(60% 60% at 50% 10%, rgba(233,72,99,0.14), transparent 70%);
+  filter: blur(18px);
+  opacity: .35;
+  z-index: -1;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.glow:hover::before { opacity: .6; transform: scale(1.02); }
+
+/* Typography */
+.prose { @apply prose-lg prose-neutral max-w-none; }
+.display { @apply font-serif; font-variation-settings: normal; }
+
+/* Simple starfield animation */
+.stars {
+  background: radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.3), transparent 60%),
+    radial-gradient(1px 1px at 80% 20%, rgba(255,255,255,0.25), transparent 60%),
+    radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.2), transparent 60%);
+}

@@ -22,13 +22,13 @@ export default function Home() {
         <div className="container-page relative py-20 md:py-28 grid gap-10 md:grid-cols-2 md:items-center">
           <motion.div {...fadeUp} className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full bg-rose-50 px-3 py-1 text-rose-600 ring-1 ring-rose-100">
-              <Rocket className="size-4" /> Premium AI consulting
+              <Rocket className="size-4" /> Your roadmap to AI adoption
             </span>
             <h1 className="display mt-6 text-5xl font-semibold tracking-tight md:text-6xl">
-              AI consulting that feels premium—and delivers results
+              Big-firm consulting, scaled to fit your business.
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-              For SMBs in health, tech, and manufacturing. Clear. Compliant. ROI-focused.
+              Ordera brings enterprise-grade AI strategy and compliance expertise to SMBs—without the bloated costs.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/contact" className="btn-primary btn-glow px-5 py-2.5">
@@ -57,53 +57,47 @@ export default function Home() {
         </div>
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            { title: "AI Strategy", icon: Rocket, desc: "Roadmaps and ROI modeling." },
-            { title: "Automation", icon: Workflow, desc: "RPA, intake, back-office." },
-            { title: "Compliance", icon: Shield, desc: "PHIPA, SOC‑2, ISO‑9001 by design." },
+            { title: "AI Strategy", slug: "ai-strategy-roadmaps", icon: Rocket, desc: "Roadmaps and ROI modeling." },
+            { title: "Automation", slug: "workflow-automation", icon: Workflow, desc: "RPA, intake, back-office." },
+            { title: "Compliance", slug: "compliance-by-design", icon: Shield, desc: "PHIPA, SOC‑2, ISO‑9001 by design." },
           ].map((item) => (
-            <motion.div
-              key={item.title}
-              {...fadeUp}
-              className="card glow p-6 hover:shadow-xl transition-all hover:-translate-y-0.5 static-glow"
-            >
-              <item.icon className="size-6 text-rose-600" />
-              <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
-              <p className="mt-2 text-muted-foreground">{item.desc}</p>
+            <motion.div key={item.title} {...fadeUp}>
+              <Link href={`/services/${item.slug}`} className="card block p-6 hover:shadow-xl transition-all hover:-translate-y-0.5 static-glow">
+                <item.icon className="size-6 text-rose-600" />
+                <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
+                <p className="mt-2 text-muted-foreground">{item.desc}</p>
+              </Link>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* Compliance */}
-      <section className="container-page pb-16 md:pb-24">
-        <motion.h2 {...fadeUp} className="display text-4xl font-semibold tracking-tight">
-          Compliance without the friction
-        </motion.h2>
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
-          {[
-            {
-              title: "PHIPA for Clinics",
-              bullets: ["PHI handling patterns", "Consent & logging", "Vendor due diligence"],
-            },
-            {
-              title: "SOC‑2 for SaaS",
-              bullets: ["Controls mapped to workflows", "Evidence automation", "Runbooks & training"],
-            },
-            {
-              title: "ISO‑9001",
-              bullets: ["Process quality & KPIs", "CAPA loops", "Audit readiness"],
-            },
-          ].map((card) => (
-            <motion.div key={card.title} {...fadeUp} className="card glow p-6 static-glow">
-              <h3 className="text-xl font-semibold">{card.title}</h3>
-              <ul className="mt-4 list-disc pl-5 text-muted-foreground space-y-1">
-                {card.bullets.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
+      {/* Newsletter (moved here) */}
+      <section className="container-page pb-24">
+        <motion.div {...fadeUp} className="relative overflow-hidden rounded-2xl border static-glow">
+          <div className="absolute inset-0 bg-gradient-to-b from-rose-50/80 to-white" />
+          <div className="relative p-8 md:p-12 text-center">
+            <h3 className="display text-3xl">Stay sharp with Ordera Brief</h3>
+            <p className="mt-2 text-muted-foreground">Monthly insights on AI, automation, and compliance that actually matter.</p>
+            <form
+              className="mx-auto mt-6 flex w-full max-w-xl items-center gap-3"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const form = e.currentTarget as HTMLFormElement;
+                const emailInput = form.querySelector("input[type=email]") as HTMLInputElement | null;
+                const email = emailInput?.value || "";
+                await fetch("/api/newsletter", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
+                if (emailInput) emailInput.value = "";
+                alert("Thanks for subscribing!");
+              }}
+            >
+              <input type="email" placeholder="Work email" className="flex-1 rounded-xl border px-4 py-2.5" aria-label="Email" required />
+              <button className="btn-primary btn-glow px-5 py-2.5 rounded-xl">
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </motion.div>
       </section>
 
       {/* Stats */}
@@ -127,17 +121,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Promo banner */}
+      {/* Promo banner (with updated copy) */}
       <section className="container-page pb-16">
         <motion.div {...fadeUp} className="card static-glow p-6 md:p-8 bg-gradient-to-r from-white to-rose-50/60">
           <div className="flex flex-col md:flex-row md:items-center gap-6">
             <div className="flex-1">
               <div className="text-sm text-rose-600 font-semibold">Limited offer</div>
-              <h3 className="display mt-2 text-3xl">Free AI/automation audit for the first 10 signups (normally $499)</h3>
-              <p className="mt-2 text-muted-foreground">Unlock quick wins in under 14 days. Replace this demo form with your HubSpot embed when ready.</p>
+              <h3 className="display mt-2 text-3xl">Claim your free AI and automation audit ($499 value, 10 spots only)</h3>
+              <p className="mt-2 text-muted-foreground">Identify bottlenecks, reduce costs, and improve delivery speed in under 14 days.</p>
             </div>
-            <form className="flex w-full md:w-auto items-center gap-3">
-              <input type="email" placeholder="Work email" className="w-full md:w-80 rounded-xl border px-4 py-2.5" aria-label="Email" />
+            <form
+              className="flex w-full md:w-auto items-center gap-3"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const form = e.currentTarget as HTMLFormElement;
+                const emailInput = form.querySelector("input[type=email]") as HTMLInputElement | null;
+                const email = emailInput?.value || "";
+                await fetch("/api/audit", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
+                if (emailInput) emailInput.value = "";
+                alert("Thanks! We'll reach out about your audit.");
+              }}
+            >
+              <input type="email" placeholder="Work email" className="w-full md:w-80 rounded-xl border px-4 py-2.5" aria-label="Email" required />
               <button className="btn-primary btn-glow px-5 py-2.5 rounded-xl">Get my audit</button>
             </form>
           </div>
@@ -157,22 +162,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section className="container-page pb-24">
-        <motion.div {...fadeUp} className="relative overflow-hidden rounded-2xl border static-glow">
-          <div className="absolute inset-0 bg-gradient-to-b from-rose-50/80 to-white" />
-          <div className="relative p-8 md:p-12 text-center">
-            <h3 className="display text-3xl">Stay sharp with Ordera Brief</h3>
-            <p className="mt-2 text-muted-foreground">Monthly insights on AI, automation, and compliance that actually matter.</p>
-            <form className="mx-auto mt-6 flex w-full max-w-xl items-center gap-3">
-              <input type="email" placeholder="Work email" className="flex-1 rounded-xl border px-4 py-2.5" aria-label="Email" />
-              <button className="btn-primary btn-glow px-5 py-2.5 rounded-xl">
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </motion.div>
-      </section>
+      
 
       {/* Contact on Home */}
       <section className="container-page pb-24">
@@ -181,10 +171,22 @@ export default function Home() {
           <div className="relative p-8 md:p-12 text-center">
             <h3 className="display text-3xl">Contact</h3>
             <p className="mt-2 text-muted-foreground">We’ll help you decide if and how AI fits your roadmap.</p>
-            <form className="mx-auto mt-6 w-full max-w-2xl grid gap-4">
-              <input placeholder="Your name" className="w-full rounded-xl border px-5 py-3" />
-              <input placeholder="Work email" type="email" className="w-full rounded-xl border px-5 py-3" />
-              <textarea placeholder="What problem are you trying to solve?" className="w-full rounded-xl border px-5 py-3 min-h-36" />
+            <form
+              className="mx-auto mt-6 w-full max-w-2xl grid gap-4"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const form = e.currentTarget as HTMLFormElement;
+                const name = (form.querySelector('input[name="name"]') as HTMLInputElement | null)?.value || "";
+                const email = (form.querySelector('input[name="email"]') as HTMLInputElement | null)?.value || "";
+                const message = (form.querySelector('textarea[name="message"]') as HTMLTextAreaElement | null)?.value || "";
+                await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, email, message }) });
+                form.reset();
+                alert("Thanks! We'll be in touch.");
+              }}
+            >
+              <input name="name" placeholder="Your name" className="w-full rounded-xl border px-5 py-3" />
+              <input name="email" placeholder="Work email" type="email" className="w-full rounded-xl border px-5 py-3" />
+              <textarea name="message" placeholder="What problem are you trying to solve?" className="w-full rounded-xl border px-5 py-3 min-h-36" />
               <button className="btn-primary btn-glow px-5 py-2.5 rounded-xl w-full">Send</button>
             </form>
           </div>

@@ -2,33 +2,27 @@ import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
-type ContactPayload = {
-  name?: string;
+type NewsletterPayload = {
   email?: string;
-  message?: string;
 };
 
 export async function POST(request: Request) {
-  const data = (await request.json().catch(() => ({}))) as ContactPayload;
+  const data = (await request.json().catch(() => ({}))) as NewsletterPayload;
 
   try {
     const toAddress = process.env.CONTACT_TO_EMAIL || "info@orderaconsulting.com";
-    const subject = `New Contact Inquiry from ${data.name || "Unknown"}`;
+    const subject = `Newsletter signup: ${data.email || "Unknown email"}`;
     const html = `
       <div style="font-family:system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji; line-height:1.6;">
-        <h2 style="margin:0 0 8px;">New contact form submission</h2>
-        <p style="margin:0 0 8px;"><strong>Name:</strong> ${escapeHtml(data.name || "")}</p>
-        <p style="margin:0 0 8px;"><strong>Email:</strong> ${escapeHtml(data.email || "")}</p>
-        <p style="margin:12px 0 0;"><strong>Message</strong></p>
-        <pre style="white-space:pre-wrap; padding:12px; background:#f6f6f7; border-radius:8px;">${escapeHtml(data.message || "")}</pre>
+        <h2 style="margin:0 0 8px;">Ordera Brief subscription</h2>
+        <p><strong>Email:</strong> ${escapeHtml(data.email || "")}</p>
       </div>
     `;
 
     const sent = await sendEmail({ to: toAddress, subject, html });
-
     return NextResponse.json({ ok: true, sent });
   } catch (error) {
-    console.error("/api/contact error", error);
+    console.error("/api/newsletter error", error);
     return NextResponse.json({ ok: false, error: "Failed to send" }, { status: 500 });
   }
 }
@@ -48,14 +42,11 @@ async function sendEmail({ to, subject, html }: { to: string; subject: string; h
     console.warn("RESEND_API_KEY not set. Skipping actual send. Payload:", { to, subject });
     return { skipped: true };
   }
-
   const { Resend } = await import("resend");
   const resend = new Resend(apiKey);
   const from = process.env.MAIL_FROM || "Ordera <no-reply@orderaconsulting.com>";
   const result = await resend.emails.send({ from, to, subject, html });
   return { id: result.id };
 }
-
-
 
 

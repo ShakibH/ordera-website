@@ -37,12 +37,10 @@ export async function POST(req: Request) {
 
     // ✅ Correct: id is on data?.id (not result.id)
     return Response.json({ id: data?.id ?? null }, { status: 200 });
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error("Route error:", err);
-    return Response.json(
-      { error: err?.message ?? "Unexpected error" },
-      { status: 500 }
-    );
+    const message = err instanceof Error ? err.message : "Unexpected error";
+    return Response.json({ error: message }, { status: 500 });
   }
 }
 

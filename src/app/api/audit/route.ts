@@ -6,8 +6,6 @@ import { Resend } from "resend";
 // If you're on Next.js 15, Response.json is available globally.
 // If you prefer, you can instead: import { NextResponse } from "next/server"
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: Request) {
   try {
     // read the payload your form sends (adjust to your actual schema)
@@ -18,6 +16,14 @@ export async function POST(req: Request) {
 
     const from =
       process.env.MAIL_FROM || "Ordera <no-reply@orderaconsulting.com>";
+
+    // Create Resend client lazily at request time to avoid build-time env errors
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error("Missing RESEND_API_KEY");
+      return Response.json({ error: "Email service misconfigured" }, { status: 500 });
+    }
+    const resend = new Resend(apiKey);
 
     // NOTE: resend.emails.send returns { data, error }
     const { data, error } = await resend.emails.send({

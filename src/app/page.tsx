@@ -19,7 +19,7 @@ export default function Home() {
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden" style={{ backgroundColor: "#fbd8dd" }}>
-        <div className="container-page relative py-20 md:py-28 grid gap-10 md:grid-cols-2 md:items-center">
+        <div className="container-page relative py-10 md:py-28 grid gap-10 md:grid-cols-2 md:items-center">
           <motion.div {...fadeUp} className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full bg-rose-50 px-3 py-1 text-rose-600 ring-1 ring-rose-100">
               <Rocket className="size-4" /> Your roadmap to AI adoption
@@ -72,7 +72,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Newsletter (moved here) */}
+      {/* Promo banner (moved above Newsletter) */}
+      <section className="container-page pb-16">
+        <motion.div {...fadeUp} className="card static-glow p-6 md:p-8 bg-gradient-to-r from-white to-rose-50/60">
+          <div className="flex flex-col md:flex-row md:items-center gap-6">
+            <div className="flex-1">
+              <div className="text-sm text-rose-600 font-semibold">Limited offer</div>
+              <h3 className="display mt-2 text-3xl">Claim your free AI and automation audit ($499 value, 10 spots only)</h3>
+              <p className="mt-2 text-muted-foreground">Identify bottlenecks, reduce costs, and improve delivery speed in under 14 days.</p>
+            </div>
+            <form
+              className="flex w-full md:w-auto items-center gap-3"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const form = e.currentTarget as HTMLFormElement;
+                const emailInput = form.querySelector("input[type=email]") as HTMLInputElement | null;
+                const email = emailInput?.value || "";
+                await fetch("/api/audit", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
+                if (emailInput) emailInput.value = "";
+                alert("Thanks! We'll reach out about your audit.");
+              }}
+            >
+              <input type="email" placeholder="Work email" className="w-full md:w-80 rounded-xl border px-4 py-2.5" aria-label="Email" required />
+              <button className="btn-primary btn-glow px-5 py-2.5 rounded-xl">Get my audit</button>
+            </form>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Newsletter (moved below Promo and fixed mobile layout) */}
       <section className="container-page pb-24">
         <motion.div {...fadeUp} className="relative overflow-hidden rounded-2xl border static-glow">
           <div className="absolute inset-0 bg-gradient-to-b from-rose-50/80 to-white" />
@@ -80,7 +108,7 @@ export default function Home() {
             <h3 className="display text-3xl">Stay sharp with Ordera Brief</h3>
             <p className="mt-2 text-muted-foreground">Monthly insights on AI, automation, and compliance that actually matter.</p>
             <form
-              className="mx-auto mt-6 flex w-full max-w-xl items-center gap-3"
+              className="mx-auto mt-6 flex w-full max-w-xl flex-col sm:flex-row items-center gap-3"
               onSubmit={async (e) => {
                 e.preventDefault();
                 const form = e.currentTarget as HTMLFormElement;
@@ -91,8 +119,8 @@ export default function Home() {
                 alert("Thanks for subscribing!");
               }}
             >
-              <input type="email" placeholder="Work email" className="flex-1 rounded-xl border px-4 py-2.5" aria-label="Email" required />
-              <button className="btn-primary btn-glow px-5 py-2.5 rounded-xl">
+              <input type="email" placeholder="Work email" className="w-full sm:flex-1 rounded-xl border px-4 py-2.5" aria-label="Email" required />
+              <button className="btn-primary btn-glow px-5 py-2.5 rounded-xl w-full sm:w-auto">
                 Subscribe
               </button>
             </form>
@@ -121,33 +149,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Promo banner (with updated copy) */}
-      <section className="container-page pb-16">
-        <motion.div {...fadeUp} className="card static-glow p-6 md:p-8 bg-gradient-to-r from-white to-rose-50/60">
-          <div className="flex flex-col md:flex-row md:items-center gap-6">
-            <div className="flex-1">
-              <div className="text-sm text-rose-600 font-semibold">Limited offer</div>
-              <h3 className="display mt-2 text-3xl">Claim your free AI and automation audit ($499 value, 10 spots only)</h3>
-              <p className="mt-2 text-muted-foreground">Identify bottlenecks, reduce costs, and improve delivery speed in under 14 days.</p>
-            </div>
-            <form
-              className="flex w-full md:w-auto items-center gap-3"
-              onSubmit={async (e) => {
-                e.preventDefault();
-                const form = e.currentTarget as HTMLFormElement;
-                const emailInput = form.querySelector("input[type=email]") as HTMLInputElement | null;
-                const email = emailInput?.value || "";
-                await fetch("/api/audit", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
-                if (emailInput) emailInput.value = "";
-                alert("Thanks! We'll reach out about your audit.");
-              }}
-            >
-              <input type="email" placeholder="Work email" className="w-full md:w-80 rounded-xl border px-4 py-2.5" aria-label="Email" required />
-              <button className="btn-primary btn-glow px-5 py-2.5 rounded-xl">Get my audit</button>
-            </form>
-          </div>
-        </motion.div>
-      </section>
+      
 
       {/* Testimonials */}
       <section className="container-page pb-20">

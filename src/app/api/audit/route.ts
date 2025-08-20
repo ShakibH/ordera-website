@@ -1,42 +1,50 @@
+// src/app/api/audit/route.ts
 export const runtime = "nodejs";
 
 import { Resend } from "resend";
 
+// If you're on Next.js 15, Response.json is available globally.
+// If you prefer, you can instead: import { NextResponse } from "next/server"
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-type AuditPayload = {
-  email?: string;
-};
+export async function POST(req: Request) {
+  try {
+    // read the payload your form sends (adjust to your actual schema)
+    const body = await req.json(); // e.g., { to, subject, html } or whatever you send
+    const to = process.env.CONTACT_TO_EMAIL || body.to;
+    const subject = body.subject || "Audit";
+    const html = body.html || "<p>Empty</p>";
 
-export async function POST(request: Request) {
-  const data = (await request.json().catch(() => ({}))) as AuditPayload;
+    const from =
+      process.env.MAIL_FROM || "Ordera <no-reply@orderaconsulting.com>";
 
-  const to = process.env.CONTACT_TO_EMAIL!;
-  const from = process.env.MAIL_FROM!;
-  const subject = `Audit request: ${data.email || "Unknown email"}`;
-  const html = `
-    <div style="font-family:system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji; line-height:1.6;">
-      <h2 style="margin:0 0 8px;">Free AI/automation audit signup</h2>
-      <p><strong>Email:</strong> ${escapeHtml(data.email || "")}</p>
-    </div>
-  `;
+    // NOTE: resend.emails.send returns { data, error }
+    const { data, error } = await resend.emails.send({
+      from,
+      to,
+      subject,
+      html,
+    });
 
-  const { data: sentData, error } = await resend.emails.send({ from, to, subject, html });
+    if (error) {
+      console.error("Resend error:", error);
+      return Response.json(
+        { error: error.message ?? "Email send failed" },
+        { status: 500 }
+      );
+    }
 
-  if (error) {
-    return Response.json({ error: error.message ?? "Email send failed" }, { status: 500 });
+    // ✅ Correct: id is on data?.id (not result.id)
+    return Response.json({ id: data?.id ?? null }, { status: 200 });
+  } catch (err: any) {
+    console.error("Route error:", err);
+    return Response.json(
+      { error: err?.message ?? "Unexpected error" },
+      { status: 500 }
+    );
   }
-
-  return Response.json({ id: sentData?.id ?? null });
 }
 
-function escapeHtml(input: string): string {
-  return input
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
 
 

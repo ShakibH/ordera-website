@@ -100,7 +100,30 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Newsletter (moved below Promo and fixed mobile layout) */}
+      
+
+      {/* Stats */}
+      <section className="container-page pb-20">
+        <motion.h2 {...fadeUp} className="display text-2xl font-semibold mb-4">Average output from our projects</motion.h2>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { label: "Lead time saved", value: "52%" },
+            { label: "Ops cost reduction", value: "18%" },
+            { label: "Throughput", value: "27%" },
+            { label: "Manual steps", value: "−12" },
+          ].map((s) => (
+            <motion.div key={s.label} {...fadeUp} className="card p-6">
+              <AnimatedNumber value={s.value} />
+              <div className="mt-2 text-muted-foreground">{s.label}</div>
+              <div className="mt-4 h-2 w-full rounded-full bg-muted">
+                <div className="h-2 rounded-full bg-rose-500" style={{ width: s.value.replace('%','') + '%' }} />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Newsletter (moved here between Stats and Testimonials; mobile-friendly form) */}
       <section className="container-page pb-24">
         <motion.div {...fadeUp} className="relative overflow-hidden rounded-2xl border static-glow">
           <div className="absolute inset-0 bg-gradient-to-b from-rose-50/80 to-white" />
@@ -128,37 +151,20 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Stats */}
-      <section className="container-page pb-20">
-        <motion.h2 {...fadeUp} className="display text-2xl font-semibold mb-4">Average output from our projects</motion.h2>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { label: "Lead time saved", value: "52%" },
-            { label: "Ops cost reduction", value: "18%" },
-            { label: "Throughput", value: "27%" },
-            { label: "Manual steps", value: "−12" },
-          ].map((s) => (
-            <motion.div key={s.label} {...fadeUp} className="card p-6">
-              <AnimatedNumber value={s.value} />
-              <div className="mt-2 text-muted-foreground">{s.label}</div>
-              <div className="mt-4 h-2 w-full rounded-full bg-muted">
-                <div className="h-2 rounded-full bg-rose-500" style={{ width: s.value.replace('%','') + '%' }} />
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
       
 
       {/* Testimonials */}
       <section className="container-page pb-20">
         <motion.h2 {...fadeUp} className="display text-4xl font-semibold tracking-tight">What clients say</motion.h2>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
-          {["Ordera helped us automate intake while staying PHIPA-compliant.", "We shipped faster and cut ops costs in a month.", "They brought structure and warmth—rare combo."].map((quote, i) => (
+          {[
+            { quote: "Ordera helped us automate intake while staying PHIPA-compliant.", name: "Maya Singh", title: "Clinic Director", company: "HealthCo" },
+            { quote: "We shipped faster and cut ops costs in a month.", name: "Ethan Brooks", title: "Head of Engineering", company: "NorthPeak" },
+            { quote: "They brought structure and warmth—rare combo.", name: "Lena Morales", title: "Operations Lead", company: "Atlas Manufacturing" },
+          ].map((t, i) => (
             <motion.figure key={i} {...fadeUp} className="card p-6">
-              <blockquote className="text-lg">“{quote}”</blockquote>
-              <figcaption className="mt-4 text-sm text-muted-foreground">Jane Park · Clinic Director · HealthCo</figcaption>
+              <blockquote className="text-lg">“{t.quote}”</blockquote>
+              <figcaption className="mt-4 text-sm text-muted-foreground">{t.name} · {t.title} · {t.company}</figcaption>
             </motion.figure>
           ))}
         </div>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { MotionProps, Transition } from "framer-motion";
-import { Rocket, Shield, Workflow, Mail } from "lucide-react";
+import { Rocket, Shield, Workflow } from "lucide-react";
 
 const ease: Transition["ease"] = [0.22, 1, 0.36, 1];
 const fadeUp: MotionProps = {

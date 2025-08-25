@@ -14,7 +14,14 @@ export async function POST(req: Request) {
     const subject = body.subject || "Audit";
     const html = body.html || "<p>Empty</p>";
 
-    const from = (process.env.MAIL_FROM || "Ordera <no-reply@orderaconsulting.com>").trim();
+    const normalizeAddress = (input?: string) => {
+      if (!input) return input;
+      const v = input.trim();
+      if (v.startsWith("<") && v.endsWith(">")) return v.slice(1, -1);
+      return v;
+    };
+
+    const from = normalizeAddress(process.env.MAIL_FROM || "Ordera <no-reply@orderaconsulting.com>");
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const fromRegex = /^(?:[^<>]+\s<[^<>@]+@[^<>@]+\.[^<>@]+>|[^<>@\s]+@[^<>@\s]+\.[^<>@\s]+)$/;

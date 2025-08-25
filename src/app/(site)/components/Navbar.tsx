@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { useState } from "react";
@@ -19,7 +20,8 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 border-b bg-white/80 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2 font-semibold">
-          <span className="inline-block size-3 rounded-full bg-rose-600" /> Ordera
+          <Image src="/logo.png?v=1" alt="Ordera" width={28} height={28} className="rounded-full" />
+          <span className="sr-only">Ordera</span>
         </Link>
         <nav className="hidden md:flex items-center gap-8 mx-auto">
           {links.map((l) => (

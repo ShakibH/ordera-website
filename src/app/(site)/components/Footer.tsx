@@ -1,11 +1,15 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
     <footer className="mt-24 border-t">
       <div className="container-page py-12 grid gap-8 md:grid-cols-4">
         <div>
-          <div className="flex items-center gap-2 font-semibold"><span className="inline-block size-3 rounded-full bg-rose-600"/> Ordera</div>
+          <div className="flex items-center gap-2 font-semibold">
+            <Image src="/logo.png?v=1" alt="Ordera" width={28} height={28} className="rounded-full" />
+            <span>Ordera</span>
+          </div>
           <p className="mt-3 text-sm text-muted-foreground max-w-xs">AI consulting and automation for health, tech, and manufacturing. Clear. Compliant. ROI-focused.</p>
         </div>
         <div>

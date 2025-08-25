@@ -41,6 +41,11 @@ export const metadata: Metadata = {
     description:
       "Premium AI consulting and automation for SMBs in health, tech, and manufacturing.",
   },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({

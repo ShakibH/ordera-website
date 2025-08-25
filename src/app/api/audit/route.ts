@@ -59,7 +59,7 @@ export async function POST(req: Request) {
       to: toNormalized,
       subject,
       html,
-      reply_to: submittedEmail ? [submittedEmail] : undefined,
+      replyTo: submittedEmail ? [submittedEmail] : undefined,
     });
 
     if (error) {

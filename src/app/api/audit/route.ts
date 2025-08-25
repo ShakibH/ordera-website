@@ -14,8 +14,10 @@ export async function POST(req: Request) {
     const subject = body.subject || "Audit";
     const html = body.html || "<p>Empty</p>";
 
-    const from =
-      process.env.MAIL_FROM || "Ordera <no-reply@orderaconsulting.com>";
+    const from = (process.env.MAIL_FROM || "Ordera <no-reply@orderaconsulting.com>").trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const fromRegex = /^(?:[^<>]+\s<[^<>@]+@[^<>@]+\.[^<>@]+>|[^<>@\s]+@[^<>@\s]+\.[^<>@\s]+)$/;
 
     // Create Resend client lazily at request time to avoid build-time env errors
     const apiKey = process.env.RESEND_API_KEY;
@@ -28,6 +30,12 @@ export async function POST(req: Request) {
     }
     if (!to) {
       return Response.json({ error: "Email service misconfigured (missing CONTACT_TO_EMAIL)" }, { status: 500 });
+    }
+    if (!fromRegex.test(from)) {
+      return Response.json({ error: "Invalid 'from' format. Use 'name <email@domain>' or 'email@domain'." }, { status: 422 });
+    }
+    if (!emailRegex.test(to)) {
+      return Response.json({ error: "Invalid 'to' email format." }, { status: 422 });
     }
     const resend = new Resend(apiKey);
 

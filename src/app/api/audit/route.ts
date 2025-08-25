@@ -21,7 +21,13 @@ export async function POST(req: Request) {
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
       console.error("Missing RESEND_API_KEY");
-      return Response.json({ error: "Email service misconfigured" }, { status: 500 });
+      return Response.json({ error: "Email service misconfigured (missing RESEND_API_KEY)" }, { status: 500 });
+    }
+    if (!from) {
+      return Response.json({ error: "Email service misconfigured (missing MAIL_FROM)" }, { status: 500 });
+    }
+    if (!to) {
+      return Response.json({ error: "Email service misconfigured (missing CONTACT_TO_EMAIL)" }, { status: 500 });
     }
     const resend = new Resend(apiKey);
 

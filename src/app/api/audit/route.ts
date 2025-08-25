@@ -9,10 +9,16 @@ import { Resend } from "resend";
 export async function POST(req: Request) {
   try {
     // read the payload your form sends (adjust to your actual schema)
-    const body = await req.json(); // e.g., { to, subject, html } or whatever you send
+    const body = await req.json(); // e.g., { email, to, subject, html }
+    const submittedEmail: string | undefined = typeof body?.email === "string" ? body.email : undefined;
     const to = process.env.CONTACT_TO_EMAIL || body.to;
-    const subject = body.subject || "Audit";
-    const html = body.html || "<p>Empty</p>";
+    const subject = body.subject || (submittedEmail ? `Audit request: ${submittedEmail}` : "Audit request");
+    const html = body.html || `
+      <div style="font-family:system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial; line-height:1.6;">
+        <h2 style="margin:0 0 8px;">New audit request</h2>
+        <p><strong>Email:</strong> ${submittedEmail ? escapeHtml(submittedEmail) : "(not provided)"}</p>
+      </div>
+    `;
 
     const normalizeAddress = (input?: string) => {
       if (!input) return input;
@@ -22,6 +28,7 @@ export async function POST(req: Request) {
     };
 
     const from = normalizeAddress(process.env.MAIL_FROM || "Ordera <no-reply@orderaconsulting.com>");
+    const toNormalized = normalizeAddress(to);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const fromRegex = /^(?:[^<>]+\s<[^<>@]+@[^<>@]+\.[^<>@]+>|[^<>@\s]+@[^<>@\s]+\.[^<>@\s]+)$/;
@@ -35,13 +42,13 @@ export async function POST(req: Request) {
     if (!from) {
       return Response.json({ error: "Email service misconfigured (missing MAIL_FROM)" }, { status: 500 });
     }
-    if (!to) {
+    if (!toNormalized) {
       return Response.json({ error: "Email service misconfigured (missing CONTACT_TO_EMAIL)" }, { status: 500 });
     }
     if (!fromRegex.test(from)) {
       return Response.json({ error: "Invalid 'from' format. Use 'name <email@domain>' or 'email@domain'." }, { status: 422 });
     }
-    if (!emailRegex.test(to)) {
+    if (!emailRegex.test(toNormalized)) {
       return Response.json({ error: "Invalid 'to' email format." }, { status: 422 });
     }
     const resend = new Resend(apiKey);
@@ -49,9 +56,10 @@ export async function POST(req: Request) {
     // NOTE: resend.emails.send returns { data, error }
     const { data, error } = await resend.emails.send({
       from,
-      to,
+      to: toNormalized,
       subject,
       html,
+      reply_to: submittedEmail ? [submittedEmail] : undefined,
     });
 
     if (error) {
@@ -71,5 +79,11 @@ export async function POST(req: Request) {
   }
 }
 
-
-
+function escapeHtml(input: string): string {
+  return input
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}

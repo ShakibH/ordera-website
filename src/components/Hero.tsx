@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Hero() {
   return (
@@ -33,8 +34,8 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="mt-8 flex items-center gap-4">
-          <a href="/contact" className="btn btn-primary">Get Free Audit</a>
-          <a href="/services" className="btn btn-outline">Explore Services</a>
+          <Link href="/contact" className="btn btn-primary">Get Free Audit</Link>
+          <Link href="/services" className="btn btn-outline">Explore Services</Link>
         </div>
       </div>
 
@@ -45,7 +46,7 @@ export default function Hero() {
         <p className="mt-2 text-[15px] leading-6" style={{ color: 'var(--muted-hex)' }}>
           Insights on AI strategy, compliance, and scaling your business with cutting-edge automation.
         </p>
-        <a href="/blog" className="mt-3 inline-flex items-center gap-1 font-medium" style={{ color: 'var(--accent-hex)' }}>Read insights <span aria-hidden>→</span></a>
+        <Link href="/blog" className="mt-3 inline-flex items-center gap-1 font-medium" style={{ color: 'var(--accent-hex)' }}>Read insights <span aria-hidden>→</span></Link>
       </aside>
     </section>
   )

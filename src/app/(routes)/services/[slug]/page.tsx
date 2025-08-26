@@ -40,18 +40,25 @@ export default function ServiceDetailPage() {
           </ul>
         </div>
         <div className="card p-6">
-          <h2 className="text-xl font-semibold">Get a free audit</h2>
-          <form className="mt-3 flex gap-3" onSubmit={async (e) => {
-            e.preventDefault();
-            const form = e.currentTarget as HTMLFormElement;
-            const input = form.querySelector("input[type=email]") as HTMLInputElement | null;
-            const email = input?.value || "";
-            await fetch("/api/audit", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
-            if (input) input.value = "";
-            alert("Thanks! We'll reach out about your audit.");
-          }}>
-            <input type="email" required placeholder="Work email" className="w-full rounded-xl border px-4 py-2.5" aria-label="Email" />
-            <button className="btn-primary btn-glow px-5 py-2.5 rounded-xl">Request</button>
+          <h2 className="text-xl font-semibold">Contact</h2>
+          <p className="mt-2 text-muted-foreground">We’ll help you decide if and how AI fits your roadmap.</p>
+          <form
+            className="mt-4 grid gap-3"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const form = e.currentTarget as HTMLFormElement;
+              const name = (form.querySelector('input[name="name"]') as HTMLInputElement | null)?.value || "";
+              const email = (form.querySelector('input[name="email"]') as HTMLInputElement | null)?.value || "";
+              const message = (form.querySelector('textarea[name="message"]') as HTMLTextAreaElement | null)?.value || "";
+              await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, email, message }) });
+              form.reset();
+              alert("Thanks! We'll be in touch.");
+            }}
+          >
+            <input name="name" placeholder="Your name" className="w-full rounded-xl border px-4 py-2.5" />
+            <input name="email" placeholder="Work email" type="email" className="w-full rounded-xl border px-4 py-2.5" />
+            <textarea name="message" placeholder="What problem are you trying to solve?" className="w-full rounded-xl border px-4 py-2.5 min-h-28" />
+            <button className="btn-primary btn-glow px-5 py-2.5 rounded-xl w-full">Send</button>
           </form>
         </div>
       </div>

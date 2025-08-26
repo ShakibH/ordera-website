@@ -11,11 +11,19 @@
   --card: 0 0% 100%;
   --card-foreground: 222.2 84% 4.9%;
   --border: 214.3 31.8% 91.4%;
-  --primary: 350 84% 47%; /* Ordera brand red */
+  --primary: 6 100% 59%; /* Ordera orange #FF3B30 */
   --primary-foreground: 0 0% 100%;
   --secondary: 224 71% 4%;
   --secondary-foreground: 0 0% 100%;
-  --ring: 350 84% 47%;
+  --ring: 6 100% 59%;
+  /* Design tokens */
+  --accent-hex: #FF3B30; /* Ordera Orange */
+  --accent-600-hex: #e3362c;
+  --accent-700-hex: #c83027;
+  --text-hex: #111111;
+  --muted-hex: #6b7280;
+  --glass-bg: rgba(255,255,255,0.72);
+  --glass-border: rgba(255,255,255,0.55);
 }
 
 @theme inline {
@@ -46,10 +54,11 @@ body { @apply bg-background text-foreground font-sans leading-relaxed; }
 /* Reusable utilities */
 .container-page { @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8; }
 .card { @apply bg-card text-card-foreground rounded-2xl border shadow-sm; }
-.btn { @apply inline-flex items-center justify-center rounded-xl font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none tracking-tight text-sm; padding: 8px 18px; z-index: 0; }
-.btn-primary { @apply inline-flex items-center justify-center rounded-xl font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-gradient-to-r from-rose-500 to-rose-600 text-white; box-shadow: 0 8px 20px rgba(233,72,99,0.25); }
-.btn-primary:hover { box-shadow: 0 12px 36px rgba(233,72,99,0.45); }
-.btn-outline { @apply inline-flex items-center justify-center rounded-xl font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none border border-border bg-white text-foreground hover:bg-muted; padding: 8px 18px; }
+.btn { @apply inline-flex items-center justify-center rounded-full font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none tracking-tight text-sm; padding: 10px 20px; z-index: 0; }
+.btn-primary { @apply inline-flex items-center justify-center rounded-full font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none text-white; background: var(--accent-hex); box-shadow: 0 8px 20px rgba(255,59,48,0.25); }
+.btn-primary:hover { box-shadow: 0 12px 36px rgba(255,59,48,0.45); transform: translateY(-1px); }
+.btn-outline { @apply inline-flex items-center justify-center rounded-full font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none border bg-white text-foreground; border-color: var(--accent-hex); padding: 10px 20px; }
+.btn-outline:hover { background: #ffefe9; }
 
 /* Soft glow helper for CTAs */
 .btn-glow { position: relative; }

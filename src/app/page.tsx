@@ -17,31 +17,36 @@ const fadeUp: MotionProps = {
 export default function Home() {
   return (
     <div>
-      {/* Hero */}
-      <section className="relative overflow-hidden" style={{ backgroundColor: "#fbd8dd" }}>
+      {/* New Rocket Hero */}
+      <section className="relative isolate overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <Image src="/home.png" alt="Rocket launch" fill priority className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/20 to-transparent" />
+        </div>
         <div className="container-page relative py-10 md:py-28 grid gap-10 md:grid-cols-2 md:items-center">
           <motion.div {...fadeUp} className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 rounded-full bg-rose-50 px-3 py-1 text-rose-600 ring-1 ring-rose-100">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-3 py-1 text-white/90 backdrop-blur">
               <Rocket className="size-4" /> Your roadmap to AI adoption
             </span>
-            <h1 className="display mt-6 text-5xl font-semibold tracking-tight md:text-6xl">
-              Big-firm consulting, scaled to fit your business.
+            <h1 className="display mt-6 text-5xl font-semibold tracking-tight md:text-6xl text-white drop-shadow">
+              Big-firm consulting, <span style={{ color: 'var(--accent-hex)' }}>scaled to fit</span> your business.
             </h1>
-            <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+            <p className="mt-4 max-w-2xl text-lg text-white/90">
               Ordera brings enterprise-grade AI strategy and compliance expertise to SMBs—without the bloated costs.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/contact" className="btn-primary btn-glow px-5 py-2.5">
-                Get Free Audit
-              </Link>
-              <Link href="/services" className="btn-outline btn-glow px-5 py-2.5">
-                Explore services
-              </Link>
+              <Link href="/contact" className="btn btn-primary px-5 py-2.5">Get Free Audit</Link>
+              <Link href="/services" className="btn btn-outline px-5 py-2.5">Explore services</Link>
             </div>
           </motion.div>
-          <motion.div {...fadeUp} className="relative aspect-[4/3] md:aspect-[16/10] overflow-hidden rounded-3xl shadow-lg">
-            <Image src="/placeholder/hero.svg" alt="Hero" fill priority className="object-cover" />
-          </motion.div>
+        </div>
+        <div className="pointer-events-auto absolute right-6 top-40 w-[420px] max-w-[90vw] rounded-2xl border p-6 shadow-lg backdrop-blur-md md:right-12 md:top-48" style={{ background: 'var(--glass-bg)', borderColor: 'var(--glass-border)' }}>
+          <div className="flex h-9 w-9 items-center justify-center rounded-full text-white text-xl" style={{ background: 'var(--accent-hex)' }}>→</div>
+          <h3 className="mt-4 text-xl font-semibold" style={{ color: '#111' }}>Ordera Blog</h3>
+          <p className="mt-2 text-[15px] leading-6" style={{ color: '#6b7280' }}>
+            Insights on AI strategy, compliance, and scaling your business with cutting-edge automation.
+          </p>
+          <Link href="/blog" className="mt-3 inline-flex items-center gap-1 font-medium" style={{ color: 'var(--accent-hex)' }}>Read insights <span aria-hidden>→</span></Link>
         </div>
       </section>
 

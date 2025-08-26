@@ -20,7 +20,7 @@ export default function Home() {
       {/* New Rocket Hero */}
       <section className="relative isolate overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <Image src="/rocket-hero.jpg" alt="Rocket launch" fill priority className="object-cover" />
+          <Image src="/placeholder/hero.svg" alt="Rocket launch" fill priority className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/20 to-transparent" />
         </div>
         <div className="container-page relative py-10 md:py-28 grid gap-10 md:grid-cols-2 md:items-center">

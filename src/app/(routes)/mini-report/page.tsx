@@ -1,3 +1,4 @@
+"use client";
 export default function MiniReportPage() {
   return (
     <div className="container-page py-16 md:py-24">

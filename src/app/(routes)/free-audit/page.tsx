@@ -1,5 +1,8 @@
+"use client";
+import type { FormEvent } from "react";
+
 export default function FreeAuditPage() {
-  async function submit(e: React.FormEvent<HTMLFormElement>) {
+  async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget as HTMLFormElement;
     const input = form.querySelector("input[type=email]") as HTMLInputElement | null;

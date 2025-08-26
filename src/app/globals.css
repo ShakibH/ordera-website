@@ -39,7 +39,7 @@
   --color-secondary: hsl(var(--secondary));
   --color-secondary-foreground: hsl(var(--secondary-foreground));
   --color-ring: hsl(var(--ring));
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-serif: var(--font-ordera-serif);
   --font-mono: var(--font-geist-mono);
 }
@@ -67,7 +67,7 @@ body { @apply bg-background text-foreground font-sans leading-relaxed; }
   position: absolute;
   inset: -4px; /* extend outside so glow appears around */
   border-radius: 9999px;
-  background: radial-gradient(60% 60% at 50% 50%, rgba(233,72,99,0.46), transparent 70%);
+  background: radial-gradient(60% 60% at 50% 50%, rgba(255,59,48,0.46), transparent 70%);
   filter: blur(18px);
   opacity: 0.0;
   transition: opacity 140ms ease, transform 140ms ease;
@@ -78,7 +78,7 @@ body { @apply bg-background text-foreground font-sans leading-relaxed; }
 
 /* Static glow utility for sections (always on) */
 .static-glow { position: relative; }
-.static-glow::before { content: ""; position: absolute; inset: -8px; border-radius: 16px; background: radial-gradient(70% 70% at 70% 30%, rgba(233,72,99,0.20), transparent 70%); filter: blur(16px); opacity: .9; z-index:-1; }
+.static-glow::before { content: ""; position: absolute; inset: -8px; border-radius: 16px; background: radial-gradient(70% 70% at 70% 30%, rgba(255,59,48,0.20), transparent 70%); filter: blur(16px); opacity: .9; z-index:-1; }
 
 /* Soft rose blur behind containers */
 .glow { position: relative; }
@@ -88,7 +88,7 @@ body { @apply bg-background text-foreground font-sans leading-relaxed; }
   inset: -8px;
   border-radius: 16px;
   background:
-    radial-gradient(60% 60% at 50% 10%, rgba(233,72,99,0.14), transparent 70%);
+    radial-gradient(60% 60% at 50% 10%, rgba(255,59,48,0.14), transparent 70%);
   filter: blur(18px);
   opacity: .35;
   z-index: -1;
@@ -98,7 +98,7 @@ body { @apply bg-background text-foreground font-sans leading-relaxed; }
 
 /* Typography */
 .prose { @apply prose-lg prose-neutral max-w-none; }
-.display { @apply font-serif; font-variation-settings: normal; }
+.display { @apply font-sans; font-variation-settings: normal; }
 
 /* Simple starfield animation */
 .stars {

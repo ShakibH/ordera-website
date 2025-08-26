@@ -1,6 +1,7 @@
 "use client";
 import { useMemo } from "react";
 import { useParams } from "next/navigation";
+import Link from "next/link";
 
 const services = [
   { title: "AI Strategy & Roadmaps", slug: "ai-strategy-roadmaps", desc: "From discovery to prioritization and ROI modeling." },
@@ -20,7 +21,7 @@ export default function ServiceDetailPage() {
     return (
       <div className="container-page py-16 md:py-24">
         <h1 className="text-3xl font-semibold">Service not found</h1>
-        <p className="mt-2 text-muted-foreground">Please go back to <a href="/services" className="text-[var(--accent-hex)] underline">Services</a>.</p>
+        <p className="mt-2 text-muted-foreground">Please go back to <Link href="/services" className="text-[var(--accent-hex)] underline">Services</Link>.</p>
       </div>
     );
   }

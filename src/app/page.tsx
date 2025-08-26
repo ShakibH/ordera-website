@@ -14,13 +14,24 @@ const fadeUp: MotionProps = {
   transition: { duration: 0.6, ease },
 };
 
+const DEFAULT_HERO_IMAGE = process.env.NEXT_PUBLIC_HERO_IMAGE_URL || "/rocket-hero.jpg";
+
 export default function Home() {
+  const [heroSrc, setHeroSrc] = React.useState<string>(`${DEFAULT_HERO_IMAGE}?v=1`);
   return (
     <div>
       {/* New Rocket Hero */}
       <section className="relative isolate overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <Image src="/rocket-hero.jpg" alt="Rocket launch" fill priority className="object-cover" />
+          <Image
+            src={heroSrc}
+            alt="Rocket launch"
+            fill
+            priority
+            className="object-cover"
+            unoptimized={heroSrc.startsWith("http")}
+            onError={() => setHeroSrc("/placeholder/hero.svg")}
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/20 to-transparent" />
         </div>
         <div className="container-page relative py-10 md:py-28 grid gap-10 md:grid-cols-2 md:items-center">

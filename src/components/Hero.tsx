@@ -1,12 +1,24 @@
+import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+const DEFAULT_HERO_IMAGE = process.env.NEXT_PUBLIC_HERO_IMAGE_URL || "/rocket-hero.jpg";
+
 export default function Hero() {
+  const [heroSrc, setHeroSrc] = React.useState<string>(`${DEFAULT_HERO_IMAGE}?v=1`);
   return (
     <section id="hero" className="relative isolate overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 -z-10">
-        <Image src="/rocket-hero.jpg" alt="Rocket launch" fill priority className="object-cover" />
+        <Image
+          src={heroSrc}
+          alt="Rocket launch"
+          fill
+          priority
+          className="object-cover"
+          unoptimized={heroSrc.startsWith("http")}
+          onError={() => setHeroSrc("/placeholder/hero.svg")}
+        />
         {/* Legibility overlay: left-to-right dark fade */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/20 to-transparent" />
       </div>

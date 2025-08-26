@@ -34,7 +34,7 @@ export default function ServicesPage() {
             transition={{ type: "spring", stiffness: 260, damping: 18 }}
             className="card glow p-6 hover:shadow-xl"
           >
-            <s.icon className="size-6 text-rose-600" />
+            <s.icon className="size-6 text-[var(--accent-hex)]" />
             <h2 className="mt-4 text-xl font-semibold">{s.title}</h2>
             <p className="mt-2 text-muted-foreground">{s.desc}</p>
           </motion.article>

@@ -38,7 +38,7 @@ export default function QuizPage() {
           <div>{pct}%</div>
         </div>
         <div className="mt-3 h-2 w-full rounded-full bg-muted">
-          <div className="h-2 rounded-full bg-rose-500 transition-all" style={{ width: `${pct}%` }} />
+          <div className="h-2 rounded-full bg-[var(--accent-hex)] transition-all" style={{ width: `${pct}%` }} />
         </div>
 
         <AnimatePresence mode="wait">
@@ -56,7 +56,7 @@ export default function QuizPage() {
                   {["Health", "Tech", "Manufacturing", "Other"].map((opt) => (
                     <button
                       key={opt}
-                      className={`w-full rounded-xl border px-5 py-3 text-rose-700 bg-rose-50 hover:bg-rose-100 ${answers.industry === opt ? "ring-2 ring-rose-500" : ""}`}
+                      className={`w-full rounded-xl border px-5 py-3 text-[var(--accent-hex)] bg-[rgba(255,59,48,0.06)] hover:bg-[rgba(255,59,48,0.12)] ${answers.industry === opt ? "ring-2 ring-[var(--accent-hex)]" : ""}`}
                       onClick={() => setAnswers((a) => ({ ...a, industry: opt }))}
                     >
                       {opt}
@@ -72,7 +72,7 @@ export default function QuizPage() {
                   {["Ship something in 30 days", "Cut ops cost", "Improve quality", "Explore"].map((opt) => (
                     <button
                       key={opt}
-                      className={`w-full rounded-xl border px-5 py-3 hover:bg-muted ${answers.goal === opt ? "ring-2 ring-rose-500" : ""}`}
+                      className={`w-full rounded-xl border px-5 py-3 hover:bg-muted ${answers.goal === opt ? "ring-2 ring-[var(--accent-hex)]" : ""}`}
                       onClick={() => setAnswers((a) => ({ ...a, goal: opt }))}
                     >
                       {opt}
@@ -88,7 +88,7 @@ export default function QuizPage() {
                   {["Now", "This quarter", "This year"].map((opt) => (
                     <button
                       key={opt}
-                      className={`w-full rounded-xl border px-5 py-3 hover:bg-muted ${answers.timeline === opt ? "ring-2 ring-rose-500" : ""}`}
+                      className={`w-full rounded-xl border px-5 py-3 hover:bg-muted ${answers.timeline === opt ? "ring-2 ring-[var(--accent-hex)]" : ""}`}
                       onClick={() => setAnswers((a) => ({ ...a, timeline: opt }))}
                     >
                       {opt}

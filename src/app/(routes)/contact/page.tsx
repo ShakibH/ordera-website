@@ -30,11 +30,11 @@ export default function ContactPage() {
           <p className="mt-3 text-muted-foreground">We’ll help you decide if and how AI fits your roadmap.</p>
           <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-4">
             <input placeholder="Your name" className="w-full rounded-xl border px-5 py-3" {...register("name")} aria-invalid={!!errors.name} />
-            {errors.name && <p className="text-sm text-rose-600">{errors.name.message}</p>}
+            {errors.name && <p className="text-sm text-[var(--accent-hex)]">{errors.name.message}</p>}
             <input placeholder="Work email" type="email" className="w-full rounded-xl border px-5 py-3" {...register("email")} aria-invalid={!!errors.email} />
-            {errors.email && <p className="text-sm text-rose-600">{errors.email.message}</p>}
+            {errors.email && <p className="text-sm text-[var(--accent-hex)]">{errors.email.message}</p>}
             <textarea placeholder="What problem are you trying to solve?" className="w-full rounded-xl border px-5 py-3 min-h-36" {...register("message")} />
-            {errors.message && <p className="text-sm text-rose-600">{errors.message.message}</p>}
+            {errors.message && <p className="text-sm text-[var(--accent-hex)]">{errors.message.message}</p>}
             <button disabled={isSubmitting} className="btn-primary btn-glow px-5 py-2.5 rounded-xl w-full">Send</button>
           </form>
         </div>

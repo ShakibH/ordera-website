@@ -28,7 +28,7 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className={`text-sm ${pathname === l.href ? "text-rose-600" : "hover:text-rose-600"}`}
+              className={`text-sm ${pathname === l.href ? "text-[var(--accent-hex)]" : "hover:text-[var(--accent-hex)]"}`}
             >
               {l.label}
             </Link>
@@ -46,7 +46,7 @@ export default function Navbar() {
         <div className="md:hidden border-t bg-white">
           <div className="container-page flex flex-col py-3">
             {links.map((l) => (
-              <Link key={l.href} href={l.href} className="px-2 py-2 hover:text-rose-600" onClick={() => setOpen(false)}>
+              <Link key={l.href} href={l.href} className="px-2 py-2 hover:text-[var(--accent-hex)]" onClick={() => setOpen(false)}>
                 {l.label}
               </Link>
             ))}

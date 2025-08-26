@@ -55,7 +55,7 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-        <div className="pointer-events-auto absolute right-6 top-40 w-[420px] max-w-[90vw] rounded-2xl border p-6 shadow-lg backdrop-blur-md md:right-12 md:top-48" style={{ background: 'var(--glass-bg)', borderColor: 'var(--glass-border)' }}>
+        <div className="pointer-events-auto md:absolute md:right-12 md:top-48 w-[420px] max-w-[90vw] rounded-2xl border p-6 shadow-lg backdrop-blur-md mx-4 mt-6 md:mx-0" style={{ background: 'var(--glass-bg)', borderColor: 'var(--glass-border)' }}>
           <div className="flex h-9 w-9 items-center justify-center rounded-full text-white text-xl" style={{ background: 'var(--accent-hex)' }}>→</div>
           <h3 className="mt-4 text-xl font-semibold" style={{ color: '#111' }}>Ordera Blog</h3>
           <p className="mt-2 text-[15px] leading-6" style={{ color: '#6b7280' }}>
@@ -72,7 +72,7 @@ export default function Home() {
             Services that move the needle
           </motion.h2>
           <motion.div {...fadeUp}>
-            <Link href="/services" className="text-rose-600 hover:underline text-sm font-medium">View all</Link>
+            <Link href="/services" className="text-[var(--accent-hex)] hover:underline text-sm font-medium">View all</Link>
           </motion.div>
         </div>
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -83,7 +83,7 @@ export default function Home() {
           ].map((item) => (
             <motion.div key={item.title} {...fadeUp}>
               <Link href={`/services/${item.slug}`} className="card block p-6 hover:shadow-xl transition-all hover:-translate-y-0.5 static-glow">
-                <item.icon className="size-6 text-rose-600" />
+                <item.icon className="size-6 text-[var(--accent-hex)]" />
                 <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
                 <p className="mt-2 text-muted-foreground">{item.desc}</p>
               </Link>
@@ -94,10 +94,10 @@ export default function Home() {
 
       {/* Promo banner (moved above Newsletter) */}
       <section className="container-page pb-16">
-        <motion.div {...fadeUp} className="card static-glow p-6 md:p-8 bg-gradient-to-r from-white to-rose-50/60">
+        <motion.div {...fadeUp} className="card static-glow p-6 md:p-8 bg-gradient-to-r from-white to-[rgba(255,59,48,0.06)]">
           <div className="flex flex-col md:flex-row md:items-center gap-6">
             <div className="flex-1">
-              <div className="text-sm text-rose-600 font-semibold">Limited offer</div>
+              <div className="text-sm text-[var(--accent-hex)] font-semibold">Limited offer</div>
               <h3 className="display mt-2 text-3xl">Claim your free AI and automation audit ($499 value, 10 spots only)</h3>
               <p className="mt-2 text-muted-foreground">Identify bottlenecks, reduce costs, and improve delivery speed in under 14 days.</p>
             </div>
@@ -136,7 +136,7 @@ export default function Home() {
               <AnimatedNumber value={s.value} />
               <div className="mt-2 text-muted-foreground">{s.label}</div>
               <div className="mt-4 h-2 w-full rounded-full bg-muted">
-                <div className="h-2 rounded-full bg-rose-500" style={{ width: s.value.replace('%','') + '%' }} />
+                <div className="h-2 rounded-full bg-[var(--accent-hex)]" style={{ width: s.value.replace('%','') + '%' }} />
               </div>
             </motion.div>
           ))}
@@ -146,7 +146,7 @@ export default function Home() {
       {/* Newsletter (moved here between Stats and Testimonials; mobile-friendly form) */}
       <section className="container-page pb-24">
         <motion.div {...fadeUp} className="relative overflow-hidden rounded-2xl border static-glow">
-          <div className="absolute inset-0 bg-gradient-to-b from-rose-50/80 to-white" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(255,59,48,0.08)] to-white" />
           <div className="relative p-8 md:p-12 text-center">
             <h3 className="display text-3xl">Stay sharp with Ordera Brief</h3>
             <p className="mt-2 text-muted-foreground">Monthly insights on AI, automation, and compliance that actually matter.</p>
@@ -195,7 +195,7 @@ export default function Home() {
       {/* Contact on Home */}
       <section className="container-page pb-24">
         <motion.div {...fadeUp} className="relative overflow-hidden rounded-2xl border static-glow">
-          <div className="absolute inset-0 bg-gradient-to-b from-rose-50/70 to-white" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(255,59,48,0.07)] to-white" />
           <div className="relative p-8 md:p-12 text-center">
             <h3 className="display text-3xl">Contact</h3>
             <p className="mt-2 text-muted-foreground">We’ll help you decide if and how AI fits your roadmap.</p>
@@ -244,7 +244,7 @@ function AnimatedNumber({ value }: { value: string }) {
     return () => cancelAnimationFrame(frame);
   }, [target]);
   return (
-    <div className="text-3xl font-semibold text-rose-600">
+    <div className="text-3xl font-semibold text-[var(--accent-hex)]">
       {sign < 0 ? "−" : ""}
       {Math.abs(display)}
       {isPercent ? "%" : ""}

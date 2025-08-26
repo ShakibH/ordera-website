@@ -6,7 +6,7 @@ export default function Hero() {
     <section id="hero" className="relative isolate overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 -z-10">
-        <Image src="/home.png" alt="Rocket launch" fill priority className="object-cover" />
+        <Image src="/rocket-hero.jpg" alt="Rocket launch" fill priority className="object-cover" />
         {/* Legibility overlay: left-to-right dark fade */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/20 to-transparent" />
       </div>
@@ -19,12 +19,12 @@ export default function Hero() {
         </div>
 
         {/* Headline */}
-        <h1 className="mt-6 text-5xl font-extrabold leading-[1.05] text-white drop-shadow md:text-7xl max-w-3xl">
-          Big-firm consulting,
-          <br />
-          <span className="" style={{ color: 'var(--accent-hex)' }}>scaled to fit</span>
-          <br />
-          your business.
+        <h1 className="mt-6 text-5xl md:text-7xl font-extrabold text-white drop-shadow leading-[0.95] md:leading-[0.9] max-w-3xl">
+          <span>Big-firm</span><br />
+          <span>consulting,</span><br />
+          <span style={{ color: 'var(--accent-hex)' }}>scaled to fit</span><br />
+          <span>your</span><br />
+          <span>business.</span>
         </h1>
 
         {/* Subheadline */}

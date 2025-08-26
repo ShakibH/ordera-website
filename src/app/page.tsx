@@ -20,7 +20,7 @@ export default function Home() {
       {/* New Rocket Hero */}
       <section className="relative isolate overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <Image src="/home.png" alt="Rocket launch" fill priority className="object-cover" />
+          <Image src="/rocket-hero.jpg" alt="Rocket launch" fill priority className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/20 to-transparent" />
         </div>
         <div className="container-page relative py-10 md:py-28 grid gap-10 md:grid-cols-2 md:items-center">
@@ -28,8 +28,12 @@ export default function Home() {
             <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-3 py-1 text-white/90 backdrop-blur">
               <Rocket className="size-4" /> Your roadmap to AI adoption
             </span>
-            <h1 className="display mt-6 text-5xl font-semibold tracking-tight md:text-6xl text-white drop-shadow">
-              Big-firm consulting, <span style={{ color: 'var(--accent-hex)' }}>scaled to fit</span> your business.
+            <h1 className="display mt-6 text-5xl md:text-7xl font-extrabold tracking-tight text-white drop-shadow leading-[0.95] md:leading-[0.9]">
+              <span>Big-firm</span><br />
+              <span>consulting,</span><br />
+              <span style={{ color: 'var(--accent-hex)' }}>scaled to fit</span><br />
+              <span>your</span><br />
+              <span>business.</span>
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-white/90">
               Ordera brings enterprise-grade AI strategy and compliance expertise to SMBs—without the bloated costs.

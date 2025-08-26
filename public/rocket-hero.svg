@@ -1,0 +1,84 @@
+<svg width="2400" height="1400" viewBox="0 0 2400 1400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#7f1d1d"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1500 800) rotate(90) scale(520 520)">
+      <stop stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fde68a"/>
+      <stop offset="1" stop-color="#fb923c"/>
+    </linearGradient>
+    <linearGradient id="rocket" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#e2e8f0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="2400" height="1400" fill="url(#bg)"/>
+
+  <!-- Soft vignette circles -->
+  <circle cx="900" cy="400" r="260" fill="url(#glow)"/>
+  <circle cx="1200" cy="900" r="340" fill="url(#glow)"/>
+  <circle cx="1800" cy="600" r="420" fill="url(#glow)"/>
+
+  <!-- Stars -->
+  <g fill="#ffffff" fill-opacity="0.7">
+    <circle cx="210" cy="180" r="2"/>
+    <circle cx="480" cy="260" r="1.5"/>
+    <circle cx="760" cy="120" r="2"/>
+    <circle cx="1040" cy="220" r="1.5"/>
+    <circle cx="1320" cy="160" r="2"/>
+    <circle cx="1640" cy="260" r="1.5"/>
+    <circle cx="1920" cy="140" r="2"/>
+    <circle cx="2200" cy="200" r="1.5"/>
+    <circle cx="300" cy="620" r="1.5"/>
+    <circle cx="560" cy="740" r="1.5"/>
+    <circle cx="820" cy="680" r="2"/>
+    <circle cx="1080" cy="620" r="1.5"/>
+    <circle cx="1360" cy="760" r="2"/>
+    <circle cx="1620" cy="900" r="1.5"/>
+    <circle cx="1880" cy="820" r="2"/>
+    <circle cx="2140" cy="940" r="1.5"/>
+  </g>
+
+  <!-- Rocket group -->
+  <g transform="translate(1500,350)">
+    <!-- Flame -->
+    <path d="M160 620 C 120 720, 60 760, 20 860 C 90 820, 140 780, 200 760 C 240 720, 210 650, 160 620 Z" fill="url(#flame)" opacity="0.9"/>
+    <ellipse cx="150" cy="640" rx="36" ry="18" fill="#fee2e2" opacity="0.7"/>
+
+    <!-- Exhaust smoke -->
+    <g fill="#e5e7eb" opacity="0.5">
+      <circle cx="110" cy="720" r="26"/>
+      <circle cx="70" cy="770" r="34"/>
+      <circle cx="40" cy="820" r="28"/>
+      <circle cx="0" cy="860" r="22"/>
+    </g>
+
+    <!-- Body -->
+    <path d="M140 80 C 260 220, 260 520, 140 660 C 20 520, 20 220, 140 80 Z" fill="url(#rocket)" stroke="#cbd5e1" stroke-width="3"/>
+    <!-- Window -->
+    <circle cx="150" cy="360" r="44" fill="#1f2937" stroke="#93c5fd" stroke-width="6"/>
+    <circle cx="150" cy="360" r="22" fill="#60a5fa"/>
+    <!-- Fins -->
+    <path d="M140 600 C 110 660, 60 690, 40 720 C 60 660, 80 620, 110 590 Z" fill="#f43f5e"/>
+    <path d="M160 600 C 190 660, 240 690, 260 720 C 240 660, 220 620, 190 590 Z" fill="#f43f5e"/>
+    <!-- Nose -->
+    <path d="M140 80 C 150 40, 190 20, 200 0 C 170 10, 140 20, 120 40 Z" fill="#94a3b8"/>
+  </g>
+
+  <!-- Subtle foreground gradient for legibility on left side -->
+  <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#000" stop-opacity="0.45"/>
+    <stop offset="0.5" stop-color="#000" stop-opacity="0.2"/>
+    <stop offset="1" stop-color="#000" stop-opacity="0"/>
+  </linearGradient>
+  <rect width="2400" height="1400" fill="url(#fade)"/>
+</svg>
+
+

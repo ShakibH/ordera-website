@@ -6,7 +6,7 @@ export default function Hero() {
     <section id="hero" className="relative isolate overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 -z-10">
-        <Image src="/placeholder/hero.svg" alt="Rocket launch" fill priority className="object-cover" />
+        <Image src="/rocket-hero.svg" alt="Rocket launch" fill priority className="object-cover" />
         {/* Legibility overlay: left-to-right dark fade */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/20 to-transparent" />
       </div>

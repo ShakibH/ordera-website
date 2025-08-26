@@ -55,7 +55,7 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-        <div className="pointer-events-auto md:absolute md:right-12 md:top-48 w-[420px] max-w-[90vw] rounded-2xl border p-6 shadow-lg backdrop-blur-md mx-4 mt-6 md:mx-0" style={{ background: 'var(--glass-bg)', borderColor: 'var(--glass-border)' }}>
+        <div className="pointer-events-auto md:absolute md:right-12 md:top-48 w-[420px] max-w-[90vw] rounded-2xl border p-6 shadow-lg backdrop-blur-md mx-4 mt-6 mb-8 md:mx-0 md:mb-0" style={{ background: 'var(--glass-bg)', borderColor: 'var(--glass-border)' }}>
           <div className="flex h-9 w-9 items-center justify-center rounded-full text-white text-xl" style={{ background: 'var(--accent-hex)' }}>→</div>
           <h3 className="mt-4 text-xl font-semibold" style={{ color: '#111' }}>Ordera Blog</h3>
           <p className="mt-2 text-[15px] leading-6" style={{ color: '#6b7280' }}>
@@ -69,7 +69,7 @@ export default function Home() {
       <section className="container-page py-16 md:py-24">
         <div className="flex items-end justify-between">
           <motion.h2 {...fadeUp} className="display text-4xl font-semibold tracking-tight">
-            Services that move the needle
+            Services that <span className="block sm:inline">move the needle</span>
           </motion.h2>
           <motion.div {...fadeUp}>
             <Link href="/services" className="text-[var(--accent-hex)] hover:underline text-sm font-medium">View all</Link>

@@ -24,9 +24,8 @@ export default function Footer() {
         <div>
           <h3 className="font-semibold">Resources</h3>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            <li>Style Guide</li>
-            <li>Mini Report</li>
-            <li>Free Audit</li>
+            <li><Link href="/mini-report">Mini Report</Link></li>
+            <li><Link href="/free-audit">Free Audit</Link></li>
           </ul>
         </div>
         <div>

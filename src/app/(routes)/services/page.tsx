@@ -13,12 +13,12 @@ const fadeUp: MotionProps = {
 
 export default function ServicesPage() {
   const services = [
-    { title: "AI Strategy & Roadmaps", icon: Layers, desc: "From discovery to prioritization and ROI modeling." },
-    { title: "Model Selection & Tuning", icon: Bot, desc: "Pick and fine‑tune models that match your risk profile." },
-    { title: "Workflow Automation", icon: Workflow, desc: "Intake, triage, RPA, and agentic back‑office tasks." },
-    { title: "Data & Integrations", icon: Settings, desc: "Connect EHR/EMR, CRM, and ERP with secure patterns." },
-    { title: "Enablement & Training", icon: GraduationCap, desc: "Playbooks and workshops your team actually uses." },
-    { title: "Compliance by Design", icon: ShieldCheck, desc: "PHIPA, SOC‑2, ISO‑9001 baked into delivery." },
+    { title: "AI Strategy & Roadmaps", slug: "ai-strategy-roadmaps", icon: Layers, desc: "From discovery to prioritization and ROI modeling." },
+    { title: "Model Selection & Tuning", slug: "model-selection-tuning", icon: Bot, desc: "Pick and fine‑tune models that match your risk profile." },
+    { title: "Workflow Automation", slug: "workflow-automation", icon: Workflow, desc: "Intake, triage, RPA, and agentic back‑office tasks." },
+    { title: "Data & Integrations", slug: "data-integrations", icon: Settings, desc: "Connect EHR/EMR, CRM, and ERP with secure patterns." },
+    { title: "Enablement & Training", slug: "enablement-training", icon: GraduationCap, desc: "Playbooks and workshops your team actually uses." },
+    { title: "Compliance by Design", slug: "compliance-by-design", icon: ShieldCheck, desc: "PHIPA, SOC‑2, ISO‑9001 baked into delivery." },
   ];
 
   return (
@@ -32,11 +32,13 @@ export default function ServicesPage() {
             {...fadeUp}
             whileHover={{ scale: 1.03 }}
             transition={{ type: "spring", stiffness: 260, damping: 18 }}
-            className="card glow p-6 hover:shadow-xl"
+            className="card glow p-0 hover:shadow-xl overflow-hidden"
           >
-            <s.icon className="size-6 text-[var(--accent-hex)]" />
-            <h2 className="mt-4 text-xl font-semibold">{s.title}</h2>
-            <p className="mt-2 text-muted-foreground">{s.desc}</p>
+            <a href={`/services/${s.slug}`} className="block p-6 focus:outline-none focus:ring-2 focus:ring-[var(--accent-hex)]">
+              <s.icon className="size-6 text-[var(--accent-hex)]" />
+              <h2 className="mt-4 text-xl font-semibold">{s.title}</h2>
+              <p className="mt-2 text-muted-foreground">{s.desc}</p>
+            </a>
           </motion.article>
         ))}
       </div>

@@ -10,24 +10,7 @@ const posts = [
     excerpt:
       "Practical and safe AI adoption for small business owners. I share five golden rules with frameworks, examples, and a checklist for real-world use.",
     date: "2025-09-02",
-  },
-  {
-    slug: "roi-from-ai",
-    title: "How SMBs get real ROI from AI",
-    excerpt: "A simple playbook to avoid the hype and focus on value.",
-    date: "2025-06-30",
-  },
-  {
-    slug: "automation-patterns-clinics",
-    title: "Automation patterns for clinics",
-    excerpt: "From intake to follow‑ups, keep PHIPA in mind.",
-    date: "2025-06-19",
-  },
-  {
-    slug: "choosing-right-llm-saas",
-    title: "Choosing the right LLM for SaaS",
-    excerpt: "Latency, cost, risk—what really matters.",
-    date: "2025-06-04",
+    image: "/safe AI adoption.png",
   },
 ];
 
@@ -41,7 +24,7 @@ export default function BlogPage() {
           <motion.article key={p.slug} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="card overflow-hidden">
             <Link href={`/blog/${p.slug}`} className="block">
               <div className="relative aspect-[16/9] overflow-hidden">
-                <Image src="/placeholder/hero.svg" alt="placeholder" fill className="object-cover transition-transform duration-300 hover:scale-105" />
+                <Image src={p.image} alt={p.title} fill className="object-cover transition-transform duration-300 hover:scale-105" />
               </div>
               <div className="p-6">
                 <h2 className="text-xl font-semibold">{p.title}</h2>

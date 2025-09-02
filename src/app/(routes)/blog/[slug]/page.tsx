@@ -9,6 +9,7 @@ const posts = {
     author: "Ordera Team",
     description:
       "Practical and safe AI adoption for small business owners. I share five golden rules with frameworks, examples, and a checklist for real-world use.",
+    image: "/safe AI adoption.png",
     body: `
 # Safe AI Adoption: Five Rules
 
@@ -116,32 +117,26 @@ type Props = { params: Promise<Params> };
 
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
-  const post = (posts as Record<string, { title: string; date: string; author: string; body: string }>)[slug];
+  const post = (posts as Record<string, { title: string; date: string; author: string; body: string; image?: string }>)[slug];
   if (!post) return notFound();
 
   return (
     <article className="container-page py-10 md:py-16">
       <div className="relative aspect-[16/7] overflow-hidden rounded-2xl">
-        <Image src="/placeholder/hero.svg" alt="" fill className="object-cover" />
+        <Image src={post.image || "/placeholder/hero.svg"} alt="" fill className="object-cover" />
       </div>
-      <h1 className="mt-8 text-4xl font-semibold tracking-tight md:text-5xl">{post.title}</h1>
-      <div className="mt-2 text-sm text-muted-foreground">By {post.author} • {new Date(post.date).toLocaleDateString()}</div>
-      <div className="prose prose-neutral mt-6" dangerouslySetInnerHTML={{ __html: markdownToHtml(post.body) }} />
+      <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">{post.title}</h1>
+      <div className="mt-1 text-sm text-muted-foreground">By {post.author} • {new Date(post.date).toLocaleDateString()}</div>
+      <div className="prose prose-neutral mt-4" dangerouslySetInnerHTML={{ __html: markdownToHtml(post.body) }} />
 
-      <hr className="my-10" />
-      <h2 className="text-2xl font-semibold">Related articles</h2>
-      <ul className="mt-3 list-disc pl-5">
-        {Object.entries(posts).filter(([key]) => key !== slug).map(([key, p]) => (
-          <li key={key}><a className="underline" href={`/blog/${key}`}>{(p as {title:string}).title}</a></li>
-        ))}
-      </ul>
+      {/* Related articles intentionally removed while only one post exists */}
     </article>
   );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = (posts as Record<string, { title: string; description?: string }>)[slug];
+  const post = (posts as Record<string, { title: string; description?: string; image?: string }>)[slug];
   if (!post) return {};
   return {
     title: post.title,
@@ -151,11 +146,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.description,
       type: "article",
       url: `/blog/${slug}`,
+      images: post.image ? [{ url: post.image }] : undefined,
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
+      images: post.image ? [post.image] : undefined,
     },
   };
 }
@@ -171,7 +168,7 @@ function markdownToHtml(md: string): string {
     .replace(/^\d+\. (.*$)/gim, '<li>$1</li>')
     .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
     .replace(/\*(.*)\*/gim, '<em>$1</em>')
-    .replace(/!\[(.*?)\]\((.*?)\)/gim, '<img alt="$1" src="$2" />')
+    .replace(/!\[(.*?)\]\((.*?)\)/gim, '<img alt="$1" src="$2" style="border-radius:16px;" />')
     .replace(/\n/g, '<br />');
 }
 

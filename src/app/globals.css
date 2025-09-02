@@ -97,12 +97,13 @@ body { @apply bg-background text-foreground font-sans leading-relaxed; }
 .glow:hover::before { opacity: .6; transform: scale(1.02); }
 
 /* Typography */
-.prose { @apply prose-lg prose-neutral max-w-none; }
-.prose h1 { margin-top: 1rem; margin-bottom: 0.4rem; }
-.prose h2 { margin-top: 0.9rem; margin-bottom: 0.3rem; }
-.prose h3 { margin-top: 0.75rem; margin-bottom: 0.25rem; }
-.prose p { margin-top: 0.3rem; margin-bottom: 0.3rem; }
-.prose ul, .prose ol { margin-top: 0.4rem; margin-bottom: 0.6rem; }
+.prose { @apply prose-lg prose-neutral max-w-none; line-height: 1.55; }
+.prose :where(p, li){ line-height: 1.55; }
+.prose h1 { margin-top: 0.85rem; margin-bottom: 0.35rem; }
+.prose h2 { margin-top: 0.8rem; margin-bottom: 0.28rem; }
+.prose h3 { margin-top: 0.65rem; margin-bottom: 0.22rem; }
+.prose p { margin-top: 0.25rem; margin-bottom: 0.25rem; }
+.prose ul, .prose ol { margin-top: 0.35rem; margin-bottom: 0.5rem; }
 .prose img { margin-top: 0.6rem; margin-bottom: 0.9rem; }
 .display { @apply font-sans; font-variation-settings: normal; }
 

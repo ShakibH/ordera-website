@@ -224,8 +224,10 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <article className="container-page py-8 md:py-12">
-      <div className="overflow-hidden rounded-2xl">
-        <Image src={post.image || "/placeholder/hero.svg"} alt="" width={1152} height={768} className="w-full h-auto" />
+      <div className="relative overflow-hidden rounded-2xl">
+        <div className="relative w-full" style={{ aspectRatio: '16 / 9' }}>
+          <Image src={post.image || "/placeholder/hero.svg"} alt="" fill className="object-contain" />
+        </div>
       </div>
       <h1 className="mt-5 text-4xl font-semibold tracking-tight md:text-5xl">{post.title}</h1>
       <div className="mt-1 text-sm text-muted-foreground">By {post.author} • {new Date(post.date).toLocaleDateString()}</div>

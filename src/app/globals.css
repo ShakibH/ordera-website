@@ -100,8 +100,8 @@ body { @apply bg-background text-foreground font-sans leading-relaxed; }
 .prose { @apply prose-lg prose-neutral max-w-none; line-height: 1.55; }
 .prose :where(p, li){ line-height: 1.55; }
 .prose h1 { margin-top: 0.85rem; margin-bottom: 0.35rem; }
-.prose h2 { margin-top: 0.8rem; margin-bottom: 0.28rem; }
-.prose h3 { margin-top: 0.65rem; margin-bottom: 0.22rem; }
+.prose h2 { margin-top: 0.7rem; margin-bottom: 0.2rem; }
+.prose h3 { margin-top: 0.55rem; margin-bottom: 0.18rem; }
 .prose p { margin-top: 0.25rem; margin-bottom: 0.25rem; }
 .prose ul, .prose ol { margin-top: 0.35rem; margin-bottom: 0.5rem; }
 .prose img { margin-top: 0.6rem; margin-bottom: 0.9rem; }

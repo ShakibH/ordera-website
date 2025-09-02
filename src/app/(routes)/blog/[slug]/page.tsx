@@ -7,7 +7,7 @@ const posts = {
   "building-trust-in-ai": {
     title: "Building Trust in AI - Why Ethical AI and Governance Matter for Your Company",
     date: "2025-09-02",
-    author: "Ordera Team",
+    author: "Shakib Hamden",
     description:
       "Practical strategies for building trust in AI. Learn why ethical AI and governance matter, with steps to avoid bias, protect privacy, and meet compliance.",
     image: "/building trust in AI.png",
@@ -108,7 +108,7 @@ If you want a governance playbook custom‑fit to your AI stack, reach out. I ca
   "safe-ai-adoption-five-rules": {
     title: "Safe AI Adoption: Five Rules",
     date: "2025-09-02",
-    author: "Ordera Team",
+    author: "Shakib Hamden",
     description:
       "Practical and safe AI adoption for small business owners. I share five golden rules with frameworks, examples, and a checklist for real-world use.",
     image: "/safe AI adoption.png",
@@ -231,7 +231,7 @@ export default async function ArticlePage({ params }: Props) {
       </div>
       <h1 className="mt-5 text-4xl font-semibold tracking-tight md:text-5xl">{post.title}</h1>
       <div className="mt-1 text-sm text-muted-foreground">By {post.author} • {new Date(post.date).toLocaleDateString()}</div>
-      <div className="prose prose-neutral mt-3" dangerouslySetInnerHTML={{ __html: markdownToHtml(post.body) }} />
+      <div className="prose prose-neutral mt-3" dangerouslySetInnerHTML={{ __html: markdownToHtml(stripLeadingH1(post.body)) }} />
       <PostContactForm />
       
       {/* Related articles intentionally removed while only one post exists */}
@@ -263,19 +263,81 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // Tiny markdown renderer for demo purposes only
+function escapeHtml(input: string): string {
+  return input
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function stripLeadingH1(md: string): string {
+  const lines = md.split(/\r?\n/);
+  if (lines.length && /^#\s+/.test(lines[0])) {
+    return lines.slice(1).join("\n");
+  }
+  return md;
+}
+
 function markdownToHtml(md: string): string {
-  return md
-    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
-    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-    .replace(/^> (.*$)/gim, '<blockquote>$1</blockquote>')
-    .replace(/\n\n- (.*$)/gim, '<ul><li>$1</li></ul>')
-    .replace(/^\d+\. (.*$)/gim, '<li>$1</li>')
-    .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
-    .replace(/\*(.*)\*/gim, '<em>$1</em>')
-    .replace(/!\[(.*?)\]\((.*?)\)/gim, '<img alt="$1" src="$2" style="border-radius:16px;" />')
-    .replace(/Link \((https?:[^)]+)\)/gim, '<a href="$1" target="_blank" rel="noopener noreferrer">Link</a>')
-    .replace(/\n{2,}/g, '<br /><br />');
+  const lines = md.split(/\r?\n/);
+  let html = "";
+  let inUl = false;
+  let inOl = false;
+
+  const flushLists = () => {
+    if (inUl) { html += "</ul>"; inUl = false; }
+    if (inOl) { html += "</ol>"; inOl = false; }
+  };
+
+  for (const rawLine of lines) {
+    const line = rawLine.trimEnd();
+    if (line.trim() === "") { flushLists(); continue; }
+
+    // Headings
+    let m;
+    if ((m = line.match(/^###\s+(.*)$/))) { flushLists(); html += `<h3>${inline(m[1])}</h3>`; continue; }
+    if ((m = line.match(/^##\s+(.*)$/))) { flushLists(); html += `<h2>${inline(m[1])}</h2>`; continue; }
+    if ((m = line.match(/^#\s+(.*)$/))) { flushLists(); /* ignore body h1 */ continue; }
+
+    // Blockquote
+    if ((m = line.match(/^>\s+(.*)$/))) { flushLists(); html += `<blockquote>${inline(m[1])}</blockquote>`; continue; }
+
+    // Image
+    if ((m = line.match(/^!\[(.*?)\]\((.*?)\)$/))) { flushLists(); html += `<img alt="${escapeHtml(m[1])}" src="${escapeHtml(m[2])}" style="border-radius:16px;" />`; continue; }
+
+    // Unordered list item
+    if ((m = line.match(/^-\s+(.*)$/))) {
+      if (!inUl) { flushLists(); html += "<ul>"; inUl = true; }
+      html += `<li>${inline(m[1])}</li>`;
+      continue;
+    }
+
+    // Ordered list item
+    if ((m = line.match(/^\d+\.\s+(.*)$/))) {
+      if (!inOl) { flushLists(); html += "<ol>"; inOl = true; }
+      html += `<li>${inline(m[1])}</li>`;
+      continue;
+    }
+
+    // Paragraph
+    flushLists();
+    html += `<p>${inline(line)}</p>`;
+  }
+  flushLists();
+  return html;
+
+  function inline(text: string): string {
+    // Escape raw HTML
+    let t = escapeHtml(text);
+    // Links [text](url)
+    t = t.replace(/\[(.+?)\]\((https?:[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+    // Bold and italics
+    t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    t = t.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    return t;
+  }
 }
 
 

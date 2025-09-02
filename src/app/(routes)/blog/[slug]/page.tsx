@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import PostContactForm from "@/components/PostContactForm";
+import SharePanel from "@/components/SharePanel";
 import { notFound } from "next/navigation";
 
 const posts = {
@@ -198,19 +199,22 @@ export default async function ArticlePage({ params }: Props) {
   if (!post) return notFound();
 
   return (
-    <article className="container-page py-8 md:py-12">
-      <div className="relative overflow-hidden rounded-2xl">
-        <div className="relative w-full" style={{ aspectRatio: '32 / 9' }}>
-          <Image src={post.image || "/placeholder/hero.svg"} alt="" fill className="object-contain" />
-        </div>
+    <div className="container-page py-8 md:py-12">
+      <div className="grid grid-cols-1 md:grid-cols-[220px,1fr] gap-8">
+        <SharePanel title={post.title} />
+        <article>
+          <div className="relative overflow-hidden rounded-2xl">
+            <div className="relative w-full" style={{ aspectRatio: '32 / 9' }}>
+              <Image src={post.image || "/placeholder/hero.svg"} alt="" fill className="object-contain" />
+            </div>
+          </div>
+          <h1 className="mt-5 text-4xl font-semibold tracking-tight md:text-5xl text-center md:text-left">{post.title}</h1>
+          <div className="mt-1 text-sm text-muted-foreground text-center md:text-left">By {post.author} • {new Date(post.date).toLocaleDateString()}</div>
+          <div className="prose prose-neutral mt-3 mx-auto" style={{ maxWidth: 820 }} dangerouslySetInnerHTML={{ __html: markdownToHtml(stripLeadingH1(post.body)) }} />
+          <PostContactForm />
+        </article>
       </div>
-      <h1 className="mt-5 text-4xl font-semibold tracking-tight md:text-5xl">{post.title}</h1>
-      <div className="mt-1 text-sm text-muted-foreground">By {post.author} • {new Date(post.date).toLocaleDateString()}</div>
-      <div className="prose prose-neutral mt-3" dangerouslySetInnerHTML={{ __html: markdownToHtml(stripLeadingH1(post.body)) }} />
-      <PostContactForm />
-      
-      {/* Related articles intentionally removed while only one post exists */}
-    </article>
+    </div>
   );
 }
 

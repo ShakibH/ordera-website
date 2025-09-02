@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
+import PostContactForm from "@/components/PostContactForm";
 import { notFound } from "next/navigation";
 
 const posts = {
@@ -221,8 +221,6 @@ export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
   const post = (posts as Record<string, { title: string; date: string; author: string; body: string; image?: string }>)[slug];
   if (!post) return notFound();
-
-  const PostContactForm = dynamic(() => import("@/components/PostContactForm"), { ssr: false });
 
   return (
     <article className="container-page py-8 md:py-12">

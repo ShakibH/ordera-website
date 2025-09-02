@@ -5,6 +5,13 @@ import { motion } from "framer-motion";
 
 const posts = [
   {
+    slug: "safe-ai-adoption-five-rules",
+    title: "Safe AI Adoption: Five Rules",
+    excerpt:
+      "Practical and safe AI adoption for small business owners. I share five golden rules with frameworks, examples, and a checklist for real-world use.",
+    date: "2025-09-02",
+  },
+  {
     slug: "roi-from-ai",
     title: "How SMBs get real ROI from AI",
     excerpt: "A simple playbook to avoid the hype and focus on value.",

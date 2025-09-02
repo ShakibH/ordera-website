@@ -55,13 +55,17 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-        <div className="pointer-events-auto md:absolute md:right-12 md:top-48 w-[420px] max-w-[90vw] rounded-2xl border p-6 shadow-lg backdrop-blur-md mx-4 mt-6 mb-8 md:mx-0 md:mb-0" style={{ background: 'var(--glass-bg)', borderColor: 'var(--glass-border)' }}>
-          <div className="flex h-9 w-9 items-center justify-center rounded-full text-white text-xl" style={{ background: 'var(--accent-hex)' }}>→</div>
-          <h3 className="mt-4 text-xl font-semibold" style={{ color: '#111' }}>Ordera Blog</h3>
-          <p className="mt-2 text-[15px] leading-6" style={{ color: '#6b7280' }}>
-            Insights on AI strategy, compliance, and scaling your business with cutting-edge automation.
-          </p>
-          <Link href="/blog" className="mt-3 inline-flex items-center gap-1 font-medium" style={{ color: 'var(--accent-hex)' }}>Read insights <span aria-hidden>→</span></Link>
+        <div className="md:absolute md:inset-x-0 md:top-48">
+          <div className="container-page flex justify-end">
+            <div className="pointer-events-auto w-[420px] max-w-full rounded-2xl border p-6 shadow-lg backdrop-blur-md mx-4 mt-6 mb-8 md:mx-0 md:mt-0 md:mb-0" style={{ background: 'var(--glass-bg)', borderColor: 'var(--glass-border)' }}>
+              <div className="flex h-9 w-9 items-center justify-center rounded-full text-white text-xl" style={{ background: 'var(--accent-hex)' }}>→</div>
+              <h3 className="mt-4 text-xl font-semibold" style={{ color: '#111' }}>Ordera Blog</h3>
+              <p className="mt-2 text-[15px] leading-6" style={{ color: '#6b7280' }}>
+                Insights on AI strategy, compliance, and scaling your business with cutting-edge automation.
+              </p>
+              <Link href="/blog" className="mt-3 inline-flex items-center gap-1 font-medium" style={{ color: 'var(--accent-hex)' }}>Read insights <span aria-hidden>→</span></Link>
+            </div>
+          </div>
         </div>
       </section>
 

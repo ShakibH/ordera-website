@@ -1,3 +1,6 @@
+.post-wrapper{display:grid;grid-template-columns:160px minmax(0,720px) 1fr;gap:24px}
+.share{grid-column:1;position:sticky;top:96px}
+.post-header,.post-content{grid-column:2}
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";

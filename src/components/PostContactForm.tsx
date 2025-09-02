@@ -9,7 +9,7 @@ export default function PostContactForm() {
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(255,59,48,0.07)] to-white" />
         <div className="relative p-6 md:p-8">
           <h3 className="display text-2xl md:text-3xl text-center">Have a question about this topic?</h3>
-          <p className="mt-2 text-muted-foreground text-center">Send a note and we'll follow up within 1 business day.</p>
+          <p className="mt-2 text-muted-foreground text-center">Send a note and we&apos;ll follow up within 1 business day.</p>
           <form
             className="mx-auto mt-6 w-full max-w-2xl grid gap-4"
             onSubmit={async (e) => {

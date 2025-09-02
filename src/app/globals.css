@@ -1,6 +1,13 @@
 .post-wrapper{display:grid;grid-template-columns:160px minmax(0,720px) 1fr;gap:24px}
 .share{grid-column:1;position:sticky;top:96px}
 .post-header,.post-content{grid-column:2}
+
+@media (max-width: 768px) {
+  .post-wrapper { grid-template-columns: 1fr; gap: 16px; }
+  .post-header, .post-content { grid-column: 1; }
+  .post-title { max-width: none; margin-left: 0; margin-right: 0; }
+  .post-content { max-width: none; width: 100%; }
+}
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";

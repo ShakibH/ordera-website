@@ -203,14 +203,9 @@ export default async function ArticlePage({ params }: Props) {
       <div className="grid grid-cols-1 md:grid-cols-[220px,1fr] gap-8">
         <SharePanel title={post.title} />
         <article>
-          <div className="relative overflow-hidden rounded-2xl">
-            <div className="relative w-full" style={{ aspectRatio: '32 / 9' }}>
-              <Image src={post.image || "/placeholder/hero.svg"} alt="" fill className="object-contain" />
-            </div>
-          </div>
-          <h1 className="mt-5 text-4xl font-semibold tracking-tight md:text-5xl text-center md:text-left">{post.title}</h1>
-          <div className="mt-1 text-sm text-muted-foreground text-center md:text-left">By {post.author} • {new Date(post.date).toLocaleDateString()}</div>
-          <div className="prose prose-neutral mt-3 mx-auto" style={{ maxWidth: 820 }} dangerouslySetInnerHTML={{ __html: markdownToHtml(stripLeadingH1(post.body)) }} />
+          <h1 className="mt-2 text-4xl font-semibold tracking-tight md:text-5xl text-center">{post.title}</h1>
+          <div className="mt-1 text-sm text-muted-foreground text-center">By {post.author} • {new Date(post.date).toLocaleDateString()}</div>
+          <div className="prose prose-neutral mt-3 mx-auto" style={{ maxWidth: 820 }} dangerouslySetInnerHTML={{ __html: markdownToHtml(stripLeadingH1(post.body), post.image) }} />
           <PostContactForm />
         </article>
       </div>
@@ -259,11 +254,12 @@ function stripLeadingH1(md: string): string {
   return md;
 }
 
-function markdownToHtml(md: string): string {
+function markdownToHtml(md: string, imageSrc?: string): string {
   const lines = md.split(/\r?\n/);
   let html = "";
   let inUl = false;
   let inOl = false;
+  let insertedImage = false;
 
   const flushLists = () => {
     if (inUl) { html += "</ul>"; inUl = false; }
@@ -300,9 +296,13 @@ function markdownToHtml(md: string): string {
       continue;
     }
 
-    // Paragraph
+    // Paragraph (insert image after the first paragraph if provided)
     flushLists();
     html += `<p>${inline(line)}</p>`;
+    if (!insertedImage && imageSrc) {
+      html += `<div class="mt-4 mb-6"><img alt="" src="${escapeHtml(imageSrc)}" style="border-radius:16px; width:100%; height:auto; aspect-ratio:3/2; object-fit:contain;" /></div>`;
+      insertedImage = true;
+    }
   }
   flushLists();
   return html;
@@ -311,6 +311,9 @@ function markdownToHtml(md: string): string {
     // Escape raw HTML
     let t = escapeHtml(text);
     // Links [text](url)
+    // References pattern: "Link (URL)" -> hyperlink with text 'link'
+    t = t.replace(/\blink\s*\((https?:[^\s)]+)\)/gi, '<a href="$1" target="_blank" rel="noopener noreferrer">link</a>');
+    // Standard markdown links [text](url)
     t = t.replace(/\[(.+?)\]\((https?:[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
     // Bold and italics
     t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');

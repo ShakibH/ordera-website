@@ -199,13 +199,13 @@ export default async function ArticlePage({ params }: Props) {
   if (!post) return notFound();
 
   return (
-    <div className="container-page pt-8 md:pt-10 pb-12">
-      <h1 className="text-4xl font-semibold tracking-tight md:text-5xl text-center">{post.title}</h1>
-      <div className="mt-1 text-sm text-muted-foreground text-center">By {post.author} • {new Date(post.date).toLocaleDateString()}</div>
+    <div className="container-page pt-6 md:pt-8 pb-12">
+      <h1 className="post-title text-4xl font-semibold tracking-tight md:text-5xl text-center">{post.title}</h1>
+      <div className="mt-1 text-sm text-muted-foreground text-center post-title-meta" style={{ maxWidth: 700, margin: "0 auto" }}>By {post.author} • {new Date(post.date).toLocaleDateString()}</div>
       <div className="mt-6 grid grid-cols-1 md:grid-cols-[220px,1fr] gap-8">
         <SharePanel title={post.title} />
         <article>
-          <div className="prose prose-neutral mx-auto" style={{ maxWidth: 820 }} dangerouslySetInnerHTML={{ __html: markdownToHtml(stripLeadingH1(post.body), post.image) }} />
+          <div className="post-content prose prose-neutral mx-auto" dangerouslySetInnerHTML={{ __html: markdownToHtml(stripLeadingH1(post.body), post.image) }} />
           <PostContactForm />
         </article>
       </div>

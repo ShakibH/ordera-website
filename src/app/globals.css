@@ -105,6 +105,11 @@ body { @apply bg-background text-foreground font-sans leading-relaxed; }
 .prose p { margin-top: 0.25rem; margin-bottom: 0.25rem; }
 .prose ul, .prose ol { margin-top: 0.35rem; margin-bottom: 0.5rem; }
 .prose img { margin-top: 0.6rem; margin-bottom: 0.9rem; }
+
+/* Blog post layout helpers */
+.post-title { max-width: 700px; margin: 0 auto 1rem auto; line-height: 1.2; }
+.post-content { max-width: 700px; margin: 0 auto; }
+
 .display { @apply font-sans; font-variation-settings: normal; }
 
 /* Simple starfield animation */

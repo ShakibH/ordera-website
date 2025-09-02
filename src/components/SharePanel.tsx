@@ -33,7 +33,7 @@ export default function SharePanel({ title }: Props) {
   const encodedTitle = encodeURIComponent(title);
 
   return (
-    <aside className="hidden md:block sticky top-28 self-start">
+    <aside className="hidden md:block share sticky top-28 self-start" style={{ margin: 0 }}>
       <div className="flex flex-col gap-4 text-sm">
         <Link href="/blog" className="inline-flex items-center gap-2 hover:underline">
           <ArrowLeft className="size-4" /> All posts

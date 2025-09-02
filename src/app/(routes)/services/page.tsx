@@ -23,7 +23,7 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="container-page py-16 md:py-24">
+    <div className="container-page pt-10 md:pt-12 pb-16 md:pb-24">
       <motion.h1 {...fadeUp} className="text-4xl font-semibold tracking-tight md:text-5xl">Services</motion.h1>
       <p className="mt-3 max-w-2xl text-muted-foreground">Designed for SMBs ready to capture value quickly—and safely.</p>
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

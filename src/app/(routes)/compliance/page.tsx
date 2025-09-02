@@ -27,7 +27,7 @@ const sections = [
 
 export default function CompliancePage() {
   return (
-    <div className="container-page py-16 md:py-24">
+    <div className="container-page pt-10 md:pt-12 pb-16 md:pb-24">
       <motion.h1 {...fadeUp} className="text-4xl font-semibold tracking-tight md:text-5xl">Compliance</motion.h1>
       <p className="mt-3 max-w-2xl text-muted-foreground">Build trust while you build automation. Controls and documentation integrated into delivery.</p>
       <div className="mt-8 grid gap-6 md:grid-cols-3">

@@ -5,6 +5,14 @@ import { motion } from "framer-motion";
 
 const posts = [
   {
+    slug: "building-trust-in-ai",
+    title: "Building Trust in AI - Why Ethical AI and Governance Matter for Your Company",
+    excerpt:
+      "Practical strategies for building trust in AI. Learn why ethical AI and governance matter, with steps to avoid bias, protect privacy, and meet compliance.",
+    date: "2025-09-02",
+    image: "/building trust in AI.png",
+  },
+  {
     slug: "safe-ai-adoption-five-rules",
     title: "Safe AI Adoption: Five Rules",
     excerpt:
@@ -16,7 +24,7 @@ const posts = [
 
 export default function BlogPage() {
   return (
-    <div className="container-page py-16 md:py-24">
+    <div className="container-page pt-10 md:pt-12 pb-16 md:pb-24">
       <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">Blog</h1>
       <p className="mt-2 text-muted-foreground">Practical, no‑nonsense insights.</p>
       <div className="mt-8 grid gap-6 md:grid-cols-2">

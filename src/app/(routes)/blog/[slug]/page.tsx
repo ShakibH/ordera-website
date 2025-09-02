@@ -1,8 +1,110 @@
 import Image from "next/image";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 
 const posts = {
+  "building-trust-in-ai": {
+    title: "Building Trust in AI - Why Ethical AI and Governance Matter for Your Company",
+    date: "2025-09-02",
+    author: "Ordera Team",
+    description:
+      "Practical strategies for building trust in AI. Learn why ethical AI and governance matter, with steps to avoid bias, protect privacy, and meet compliance.",
+    image: "/building trust in AI.png",
+    body: `
+# Building Trust in AI - Why Ethical AI and Governance Matter for Your Company
+
+I’ve seen business owners embrace AI but hesitate. AI can drive growth, but it can also erode trust if not handled transparently. Here’s how you build trust in AI through ethics, governance, and responsible practice.
+
+## Why Trust in AI Is Non‑Negotiable
+
+Trust isn’t a bonus. It’s foundational.
+
+- A PwC study showed 87% of consumers will abandon a brand that mishandles data [1].
+- The EU’s AI Act is law. Enforcement begins August 2025. Non‑compliance can mean fines up to 7% of annual global turnover [2].
+
+Failing on bias, privacy, or governance isn’t just risky. It is costly.
+
+## Trust Requires Ethics and Governance
+
+### Ethical AI is about doing the right thing during development and deployment
+
+UNESCO’s core principles include:
+
+- Do no harm
+- Privacy and data protection
+- Transparency and explainability
+- Accountability in governance
+
+[3]
+
+That aligns with trustworthy AI frameworks globally. The GSMA toolkit balances data integrity, privacy, and societal impact [4].
+
+AI governance is the framework that makes ethical AI operational: policies, oversight, risk classification, monitoring, and compliance [5].
+
+## Real‑World Stakes and Compliance Pressure
+
+India’s RBI is building the FREE‑AI framework to mandate governance units and capacity building across finance [6].
+
+Companies increasingly appoint Chief AI Officers to lead AI strategy, risk, and governance [7].
+
+Law departments are shifting from compliance enforcers to strategy partners, embedding ethics, principle‑based planning, and transparency into AI rollouts [8].
+
+## Strategy: Five Principles for Responsible AI Use
+
+Here’s how I bring ethics and governance into every AI rollout.
+
+### 1. Define Accountability and Oversight
+
+Set AI policies with human roles attached. Map decisions, own them, audit them. NIST’s AI RMF was built on that idea [9]. Legal teams now help shape narratives to build trust [8].
+
+### 2. Build Transparency and Explainability
+
+Document how decisions are made. Make outputs understandable. Use logging, explainable models, and provide clear documentation of data and logic [10].
+
+### 3. Mitigate Bias Actively
+
+Bias sneaks in. Use diverse data, fairness metrics, audits, and model testing. Example: Olay audited and re‑trained their AI skin advisor after bias surfaced [11]. Make it ongoing.
+
+### 4. Protect Privacy and Data
+
+Minimize data. Mask or anonymize. Align with GDPR and CCPA. Embed privacy from design [12]. Trust also earns loyalty [1].
+
+### 5. Monitor, Review, Adapt
+
+Regulations evolve. Models drift. Monitor performance, bias, and vendor changes. Run periodic governance audits. Treat AI governance as a process, not a project [13].
+
+## Quick‑Win Checklist (30 Minutes)
+
+1. List your AI use cases.
+2. Assign human owners and document decisions.
+3. Run a bias or privacy check on one AI workflow.
+4. Ensure logs or explainability are accessible for that tool.
+5. Set a monthly review on governance and performance.
+
+## Final Takeaway
+
+Trust isn’t optional. Ethics and governance are the guardrails that keep AI working for you, not against you. Build them early. Make them actionable. Keep them visible.
+
+If you want a governance playbook custom‑fit to your AI stack, reach out. I can help you build one.
+
+## References
+
+1. [TechRadar – Trust as a competitive advantage, PwC data](https://www.techradar.com/pro/trust-as-a-competitive-advantage-a-data-privacy-experts-perspective)
+2. [TechRadar – EU AI Act enforcement and compliance risks](https://www.techradar.com/pro/legal-leaders-and-the-ai-shift-turning-uncertainty-into-competitive-advantage)
+3. [UNESCO – Ethical AI principles](https://www.unesco.org/en/artificial-intelligence/recommendation-ethics)
+4. [GSMA – Governance model balancing tech, privacy, impact](https://aiforimpacttoolkit.gsma.com/responsible-ai/governance-model-for-ethical-ai)
+5. [IBM – AI governance frameworks and oversight](https://www.ibm.com/think/topics/ai-governance)
+6. [AP News – RBI FREE‑AI framework and governance investments](https://apnews.com/article/231b4b7b8ed6a195ec920f1f362c15e2)
+7. [Vogue Business – Appointment of CAIO roles](https://www.voguebusiness.com/story/technology/does-your-brand-need-a-chief-ai-officer)
+8. [TechRadar – Legal teams shaping AI governance strategy](https://www.techradar.com/pro/legal-leaders-and-the-ai-shift-turning-uncertainty-into-competitive-advantage)
+9. [TIME – NIST AI RMF and hybrid regulatory approach](https://qa.time.com/6310638/elham-tabassi-2)
+10. [Chaione – Transparency and explainability in AI](https://www.chaione.com/blog/building-trust-in-ai-systems)
+11. [Algorithmic Justice League – Olay bias audit example](https://en.wikipedia.org/wiki/Algorithmic_Justice_League)
+12. [TrustArc – AI ethics with privacy compliance](https://trustarc.com/resource/ai-ethics-with-privacy-compliance/)
+13. [Cloud Security Alliance – AI security and governance](https://cloudsecurityalliance.org/blog/2025/03/14/ai-security-and-governance)
+`,
+  },
   "safe-ai-adoption-five-rules": {
     title: "Safe AI Adoption: Five Rules",
     date: "2025-09-02",
@@ -120,15 +222,18 @@ export default async function ArticlePage({ params }: Props) {
   const post = (posts as Record<string, { title: string; date: string; author: string; body: string; image?: string }>)[slug];
   if (!post) return notFound();
 
-  return (
-    <article className="container-page py-10 md:py-16">
-      <div className="relative aspect-[16/7] overflow-hidden rounded-2xl">
-        <Image src={post.image || "/placeholder/hero.svg"} alt="" fill className="object-cover" />
-      </div>
-      <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">{post.title}</h1>
-      <div className="mt-1 text-sm text-muted-foreground">By {post.author} • {new Date(post.date).toLocaleDateString()}</div>
-      <div className="prose prose-neutral mt-4" dangerouslySetInnerHTML={{ __html: markdownToHtml(post.body) }} />
+  const PostContactForm = dynamic(() => import("@/components/PostContactForm"), { ssr: false });
 
+  return (
+    <article className="container-page py-8 md:py-12">
+      <div className="overflow-hidden rounded-2xl">
+        <Image src={post.image || "/placeholder/hero.svg"} alt="" width={1152} height={768} className="w-full h-auto" />
+      </div>
+      <h1 className="mt-5 text-4xl font-semibold tracking-tight md:text-5xl">{post.title}</h1>
+      <div className="mt-1 text-sm text-muted-foreground">By {post.author} • {new Date(post.date).toLocaleDateString()}</div>
+      <div className="prose prose-neutral mt-3" dangerouslySetInnerHTML={{ __html: markdownToHtml(post.body) }} />
+      <PostContactForm />
+      
       {/* Related articles intentionally removed while only one post exists */}
     </article>
   );
@@ -169,7 +274,8 @@ function markdownToHtml(md: string): string {
     .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
     .replace(/\*(.*)\*/gim, '<em>$1</em>')
     .replace(/!\[(.*?)\]\((.*?)\)/gim, '<img alt="$1" src="$2" style="border-radius:16px;" />')
-    .replace(/\n/g, '<br />');
+    .replace(/Link \((https?:[^)]+)\)/gim, '<a href="$1" target="_blank" rel="noopener noreferrer">Link</a>')
+    .replace(/\n{2,}/g, '<br /><br />');
 }
 
 

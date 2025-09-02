@@ -17,7 +17,6 @@ const posts = {
 I’ve seen business owners embrace AI but hesitate. AI can drive growth, but it can also erode trust if not handled transparently. Here’s how you build trust in AI through ethics, governance, and responsible practice.
 
 ## Why Trust in AI Is Non‑Negotiable
-
 Trust isn’t a bonus. It’s foundational.
 
 - A PwC study showed 87% of consumers will abandon a brand that mishandles data [1].
@@ -26,24 +25,19 @@ Trust isn’t a bonus. It’s foundational.
 Failing on bias, privacy, or governance isn’t just risky. It is costly.
 
 ## Trust Requires Ethics and Governance
-
-### Ethical AI is about doing the right thing during development and deployment
-
+Ethical AI is about doing the right thing during development and deployment
 UNESCO’s core principles include:
 
 - Do no harm
 - Privacy and data protection
 - Transparency and explainability
-- Accountability in governance
-
-[3]
+- Accountability in governance [3]
 
 That aligns with trustworthy AI frameworks globally. The GSMA toolkit balances data integrity, privacy, and societal impact [4].
 
 AI governance is the framework that makes ethical AI operational: policies, oversight, risk classification, monitoring, and compliance [5].
 
 ## Real‑World Stakes and Compliance Pressure
-
 India’s RBI is building the FREE‑AI framework to mandate governance units and capacity building across finance [6].
 
 Companies increasingly appoint Chief AI Officers to lead AI strategy, risk, and governance [7].
@@ -51,31 +45,24 @@ Companies increasingly appoint Chief AI Officers to lead AI strategy, risk, and 
 Law departments are shifting from compliance enforcers to strategy partners, embedding ethics, principle‑based planning, and transparency into AI rollouts [8].
 
 ## Strategy: Five Principles for Responsible AI Use
-
 Here’s how I bring ethics and governance into every AI rollout.
 
 ### 1. Define Accountability and Oversight
-
 Set AI policies with human roles attached. Map decisions, own them, audit them. NIST’s AI RMF was built on that idea [9]. Legal teams now help shape narratives to build trust [8].
 
 ### 2. Build Transparency and Explainability
-
 Document how decisions are made. Make outputs understandable. Use logging, explainable models, and provide clear documentation of data and logic [10].
 
 ### 3. Mitigate Bias Actively
-
 Bias sneaks in. Use diverse data, fairness metrics, audits, and model testing. Example: Olay audited and re‑trained their AI skin advisor after bias surfaced [11]. Make it ongoing.
 
 ### 4. Protect Privacy and Data
-
 Minimize data. Mask or anonymize. Align with GDPR and CCPA. Embed privacy from design [12]. Trust also earns loyalty [1].
 
 ### 5. Monitor, Review, Adapt
-
 Regulations evolve. Models drift. Monitor performance, bias, and vendor changes. Run periodic governance audits. Treat AI governance as a process, not a project [13].
 
 ## Quick‑Win Checklist (30 Minutes)
-
 1. List your AI use cases.
 2. Assign human owners and document decisions.
 3. Run a bias or privacy check on one AI workflow.
@@ -83,13 +70,11 @@ Regulations evolve. Models drift. Monitor performance, bias, and vendor changes.
 5. Set a monthly review on governance and performance.
 
 ## Final Takeaway
-
 Trust isn’t optional. Ethics and governance are the guardrails that keep AI working for you, not against you. Build them early. Make them actionable. Keep them visible.
-
 If you want a governance playbook custom‑fit to your AI stack, reach out. I can help you build one.
 
-## References
 
+## References
 1. [TechRadar – Trust as a competitive advantage, PwC data](https://www.techradar.com/pro/trust-as-a-competitive-advantage-a-data-privacy-experts-perspective)
 2. [TechRadar – EU AI Act enforcement and compliance risks](https://www.techradar.com/pro/legal-leaders-and-the-ai-shift-turning-uncertainty-into-competitive-advantage)
 3. [UNESCO – Ethical AI principles](https://www.unesco.org/en/artificial-intelligence/recommendation-ethics)
@@ -118,15 +103,11 @@ If you want a governance playbook custom‑fit to your AI stack, reach out. I ca
 I work with business owners who are excited about AI but nervous about the risks. That’s a smart place to be. AI can boost productivity, cut costs, and open new revenue streams—but only if you bring it in safely. Over the past few years, I’ve seen five rules consistently separate safe adopters from risky ones.
 
 ## Rule 1: Know What AI You’re Using
-
 You can’t secure what you don’t know exists. Many businesses run “shadow AI” without realizing it—an employee pastes client data into ChatGPT, or someone installs a plug-in that talks to customer records.
-
 The first step is always an inventory. Map out every place AI is being used, from obvious tools like chatbots to background integrations inside CRMs or email platforms. Treat this as an ongoing process, not a one-time checklist.
 
 ## Rule 2: Assess Risk in Context
-
 Not all AI carries the same weight. A writing assistant for marketing copy isn’t in the same category as an AI tool making loan recommendations.
-
 I classify each tool by:
 
 - Data sensitivity: Does it handle personal, financial, or health information?
@@ -136,7 +117,6 @@ I classify each tool by:
 This makes risk visible, and it stops a harmless tool from being treated the same as one with major exposure.
 
 ## Rule 3: Protect Data Like It’s on the Road
-
 AI thrives on data, but you don’t need to give it everything. I treat sensitive data as if it’s riding in a car—it needs a seatbelt. That means policies plus technology:
 
 - Restrict the types of data that can leave your environment.
@@ -146,7 +126,6 @@ AI thrives on data, but you don’t need to give it everything. I treat sensitiv
 Most AI mishaps happen because raw, sensitive data gets shared without guardrails.
 
 ## Rule 4: Control Access With Policies
-
 This is where Zero Trust principles apply. Never assume a new AI tool is safe until reviewed. I recommend:
 
 - Approval workflows: Require a review before new AI tools touch company data.
@@ -156,7 +135,6 @@ This is where Zero Trust principles apply. Never assume a new AI tool is safe un
 When Microsoft and others talk about secure AI adoption, this is front and center: access controls and governance are non-negotiable.
 
 ## Rule 5: Monitor and Review Continuously
-
 Safe once doesn’t mean safe forever. Vendors push updates, new models release, and risks evolve. I’ve seen tools that were compliant one month but out of alignment the next.
 
 That’s why I recommend:
@@ -164,11 +142,9 @@ That’s why I recommend:
 - Quarterly audits of all AI use.
 - Ongoing monitoring of tool updates and vendor policies.
 - Spot checks of outputs for bias, security, and accuracy.
-
 The point is simple: AI adoption is not a project, it’s a practice.
 
 ## Quick-Win Checklist
-
 If you only have half an hour this week, do these five things:
 
 1. Write down every AI tool your team is using.
@@ -177,14 +153,13 @@ If you only have half an hour this week, do these five things:
 4. Set a reminder to review tool use once a month.
 5. Send one short message to your team about the rules for adopting new AI tools.
 
-## Final Takeaway
 
+## Final Takeaway
 AI can be a huge advantage for small businesses, but only if you bring it in safely. Follow these five rules and you’ll avoid the most common pitfalls.
 
 If you want a playbook tailored to your business, reach out. I help small businesses adopt AI and automation with confidence—no guesswork, no wasted time.
 
 ## References
-
 - The Hacker News — The 5 Golden Rules of Safe AI Adoption (2025). Link (https://thehackernews.com/2025/08/the-5-golden-rules-of-safe-ai-adoption.html?utm_source=chatgpt.com)
 - Quisitive — Top 5 Ways to Prep Your Organization for Secure AI Adoption (2024). Link (https://quisitive.com/top-5-ways-to-prep-your-organization-for-secure-ai-adoption/)
 - Microsoft — Responsible AI Strategy in the Cloud Adoption Framework (2024). Link (https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/ai/strategy?utm_source=chatgpt.com)
@@ -225,7 +200,7 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <article className="container-page py-8 md:py-12">
       <div className="relative overflow-hidden rounded-2xl">
-        <div className="relative w-full" style={{ aspectRatio: '16 / 9' }}>
+        <div className="relative w-full" style={{ aspectRatio: '32 / 9' }}>
           <Image src={post.image || "/placeholder/hero.svg"} alt="" fill className="object-contain" />
         </div>
       </div>

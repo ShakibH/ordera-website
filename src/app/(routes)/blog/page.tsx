@@ -17,6 +17,17 @@ type Post = {
 
 const allPosts: Post[] = [
   {
+    slug: "empowering-employees-with-ai",
+    title: "Empowering Employees with AI and Automations",
+    excerpt:
+      "Practical strategies to give teams more leverage with AI. Free people from repetitive tasks, improve accuracy, and build a culture of continuous improvement.",
+    date: "2025-09-05",
+    readMins: 7,
+    category: "AI Adoption",
+    image: "/Empowering Employees with AI.png",
+    imageAlt: "Hands-on employee enablement with AI and automations",
+  },
+  {
     slug: "building-trust-in-ai",
     title: "Building Trust in AI - Why Ethical AI and Governance Matter for Your Company",
     excerpt:

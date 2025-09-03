@@ -87,7 +87,7 @@ export default function BlogPage() {
                       <span className="inline-flex items-center gap-1"><Calendar className="size-3" /> {new Date(p.date).toLocaleDateString()}</span>
                       <span className="inline-flex items-center gap-1"><Clock className="size-3" /> {p.readMins} min read</span>
                     </div>
-                    <h3 className="mt-3 text-lg md:text-xl font-semibold">{p.title}</h3>
+                    <h3 className="mt-3 text-lg md:text-xl font-semibold transition-colors group-hover/image:text-[var(--accent-hex)]">{p.title}</h3>
                     <p className="mt-2 text-muted-foreground leading-6">{p.excerpt}</p>
                     <span className="mt-3 inline-flex items-center gap-1 text-[var(--accent-hex)] font-medium">Read Article <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span>
                   </div>
@@ -122,7 +122,7 @@ export default function BlogPage() {
                         <span className="inline-flex items-center gap-1"><Calendar className="size-3" /> {new Date(p.date).toLocaleDateString()}</span>
                         <span className="inline-flex items-center gap-1"><Clock className="size-3" /> {p.readMins} min read</span>
                       </div>
-                      <h3 className="mt-2 text-base font-semibold leading-tight">{p.title}</h3>
+                      <h3 className="mt-2 text-base font-semibold leading-tight transition-colors group-hover/image:text-[var(--accent-hex)]">{p.title}</h3>
                       <p className="mt-2 text-sm text-muted-foreground">{p.excerpt}</p>
                       <span className="mt-3 inline-flex items-center gap-1 text-[var(--accent-hex)] font-medium">Read Article <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span>
                     </div>

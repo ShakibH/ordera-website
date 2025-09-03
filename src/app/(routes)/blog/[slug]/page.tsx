@@ -15,11 +15,11 @@ const posts = {
     body: `
 # Empowering Employees with AI and Automations
 
-Small business owners often ask me if AI will replace their staff. My answer is simple: AI and automation don’t replace people—they empower them. When used responsibly, these tools free employees from repetitive tasks and let them focus on higher‑value work. That shift improves performance, reduces burnout, and fuels innovation.
+Small business owners often ask me if AI will replace their staff. My answer is simple: AI and automation don’t replace people, they empower them. When used responsibly, these tools free employees from repetitive tasks and let them focus on higher‑value work. That shift improves performance, reduces burnout, and fuels innovation.
 
 ## Why Empowering Employees with AI Matters
 
-Performance gains are real. McKinsey research shows that AI adoption can improve productivity by 20–30% in functions like marketing, supply chain, and customer service [1]. The key isn’t cutting headcount—it’s giving employees more leverage.
+Performance gains are real. McKinsey research shows that AI adoption can improve productivity by 20–30% in functions like marketing, supply chain, and customer service [1]. The key isn’t cutting headcount, it’s giving employees more leverage.
 
 - **Customer service teams** handle requests faster with AI‑assisted chat and ticket routing.
 - **Operations staff** automate reporting, reducing hours spent on manual data entry.

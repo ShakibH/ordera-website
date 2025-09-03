@@ -19,7 +19,7 @@ const DEFAULT_HERO_IMAGE = process.env.NEXT_PUBLIC_HERO_IMAGE_URL || "/rocket-he
 export default function Home() {
   const [heroSrc, setHeroSrc] = React.useState<string>(`${DEFAULT_HERO_IMAGE}?v=1`);
   const { scrollY } = useScroll();
-  const parallaxY = useTransform(scrollY, [0, 1200], [0, 320]);
+  const parallaxY = useTransform(scrollY, [0, 800], [0, 520]);
   return (
     <div>
       {/* New Rocket Hero */}

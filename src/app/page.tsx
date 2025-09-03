@@ -157,7 +157,8 @@ export default function Home() {
       {/* Newsletter (moved here between Stats and Testimonials; mobile-friendly form) */}
       <section className="container-page pb-24">
         <motion.div {...fadeUp} className="relative overflow-hidden rounded-2xl border static-glow">
-          <div className="absolute inset-0 bg-gradient-to-b from-[rgba(255,59,48,0.08)] to-white" />
+          <div className="absolute inset-0 bg-newsletter" />
+          <div className="absolute inset-0 bg-white/60" />
           <div className="relative p-8 md:p-12 text-center">
             <h3 className="display text-3xl">Stay sharp with Ordera Brief</h3>
             <p className="mt-2 text-muted-foreground">Monthly insights on AI, automation, and compliance that actually matter.</p>

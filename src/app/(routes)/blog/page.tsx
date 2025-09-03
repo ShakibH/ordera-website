@@ -127,7 +127,8 @@ export default function BlogPage() {
       <section className="mt-16">
         <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="relative overflow-hidden rounded-2xl border static-glow">
-          <div className="absolute inset-0 bg-gradient-to-r from-white to-[rgba(255,59,48,0.06)]" />
+          <div className="absolute inset-0 bg-newsletter" />
+          <div className="absolute inset-0 bg-white/60" />
           <div className="relative p-8 md:p-12 text-center">
             <h3 className="display text-3xl">Subscribe to Ordera Brief</h3>
             <p className="mt-2 text-muted-foreground">Monthly insights on AI, automation, and compliance that actually matter.</p>

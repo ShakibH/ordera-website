@@ -50,6 +50,7 @@
   --color-secondary-foreground: hsl(var(--secondary-foreground));
   --color-ring: hsl(var(--ring));
   --font-sans: var(--font-inter);
+  --font-display: var(--font-display);
   --font-serif: var(--font-ordera-serif);
   --font-mono: var(--font-geist-mono);
 }
@@ -138,7 +139,15 @@ body { @apply bg-background text-foreground font-sans leading-relaxed; }
 .post-title { max-width: 700px; margin: 0 auto 1rem auto; line-height: 1.2; }
 .post-content { max-width: 700px; margin: 0 auto; }
 
-.display { @apply font-sans; font-variation-settings: normal; }
+.display { font-family: var(--font-display), var(--font-inter), ui-sans-serif, system-ui, sans-serif; font-variation-settings: normal; }
+
+/* Newsletter background utility */
+.bg-newsletter {
+  background-image: url('/newsletter background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 /* Simple starfield animation */
 .stars {

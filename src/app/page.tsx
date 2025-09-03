@@ -49,7 +49,7 @@ export default function Home() {
               <span>business.</span>
             </h1>
             <p className="mt-4 max-w-2xl text-lg text-white/90">
-              Ordera brings enterprise-grade AI strategy and compliance expertise to SMBs—without the bloated costs.
+              Get expert support in product management, workflow automation, and compliance, tailored for lean teams ready to scale.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/contact" className="btn btn-primary px-5 py-2.5">Get Free Audit</Link>

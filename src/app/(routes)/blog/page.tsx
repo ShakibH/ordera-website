@@ -64,15 +64,15 @@ export default function BlogPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="card overflow-hidden group hover:shadow-xl transition-all"
+              className="card overflow-hidden group hover:shadow-xl transition-all hover-glow"
             >
-              <Link href={`/blog/${p.slug}`} className="block">
+              <Link href={`/blog/${p.slug}`} className="block group/image">
                 <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image src={p.image} alt={p.imageAlt} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                  <div className="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-1 text-xs font-medium text-[var(--accent-hex)] shadow">{p.category}</div>
+                  <Image src={p.image} alt={p.imageAlt} fill className="object-cover transition-transform duration-500 group-hover/image:scale-105 group-hover:scale-105" />
+                  <div className="absolute left-3 top-3 rounded-full px-2 py-1 text-xs font-medium shadow" style={{ background: 'var(--accent-hex)', color: 'white' }}>{p.category}</div>
                 </div>
                 <div className="p-6">
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-4 text-xs text-muted-foreground group-hover/image:scale-[1.01] transition-transform">
                     <span className="inline-flex items-center gap-1"><Calendar className="size-3" /> {new Date(p.date).toLocaleDateString()}</span>
                     <span className="inline-flex items-center gap-1"><Clock className="size-3" /> {p.readMins} min read</span>
                   </div>
@@ -98,15 +98,15 @@ export default function BlogPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="card overflow-hidden group hover:shadow-lg transition-all"
+                className="card overflow-hidden group hover:shadow-lg transition-all hover-glow"
               >
-                <Link href={`/blog/${p.slug}`} className="block">
+                <Link href={`/blog/${p.slug}`} className="block group/image">
                   <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image src={p.image} alt={p.imageAlt} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div className="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-1 text-xs font-medium text-[var(--accent-hex)] shadow inline-flex items-center gap-1"><Tag className="size-3" /> {p.category}</div>
+                    <Image src={p.image} alt={p.imageAlt} fill className="object-cover transition-transform duration-500 group-hover/image:scale-105 group-hover:scale-105" />
+                    <div className="absolute left-3 top-3 rounded-full px-2 py-1 text-xs font-medium shadow inline-flex items-center gap-1" style={{ background: 'var(--accent-hex)', color: 'white' }}><Tag className="size-3" /> {p.category}</div>
                   </div>
                   <div className="p-5">
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-4 text-xs text-muted-foreground transition-transform group-hover/image:scale-[1.01]">
                       <span className="inline-flex items-center gap-1"><Calendar className="size-3" /> {new Date(p.date).toLocaleDateString()}</span>
                       <span className="inline-flex items-center gap-1"><Clock className="size-3" /> {p.readMins} min read</span>
                     </div>

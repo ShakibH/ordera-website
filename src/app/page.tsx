@@ -2,9 +2,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import type { MotionProps, Transition } from "framer-motion";
-import { Rocket, Shield, Workflow } from "lucide-react";
+import { Rocket, Shield, Workflow, ChevronDown } from "lucide-react";
 
 const ease: Transition["ease"] = [0.22, 1, 0.36, 1];
 const fadeUp: MotionProps = {
@@ -18,11 +18,13 @@ const DEFAULT_HERO_IMAGE = process.env.NEXT_PUBLIC_HERO_IMAGE_URL || "/rocket-he
 
 export default function Home() {
   const [heroSrc, setHeroSrc] = React.useState<string>(`${DEFAULT_HERO_IMAGE}?v=1`);
+  const { scrollY } = useScroll();
+  const parallaxY = useTransform(scrollY, [0, 600], [0, 60]);
   return (
     <div>
       {/* New Rocket Hero */}
       <section className="relative isolate overflow-hidden">
-        <div className="absolute inset-0 -z-10">
+        <motion.div className="absolute inset-0 -z-10" style={{ y: parallaxY }}>
           <Image
             src={heroSrc}
             alt="Rocket launch"
@@ -33,7 +35,7 @@ export default function Home() {
             onError={() => setHeroSrc("/placeholder/hero.svg")}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/20 to-transparent" />
-        </div>
+        </motion.div>
         <div className="container-page relative py-10 md:py-28 grid gap-10 md:grid-cols-2 md:items-center">
           <motion.div {...fadeUp} className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/20 px-3 py-1 text-white/90 backdrop-blur">
@@ -55,6 +57,11 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+        {/* Scroll indicator */}
+        <motion.a href="#services" className="absolute left-1/2 -translate-x-1/2 bottom-6 text-white/80 text-xs tracking-[0.2em] uppercase inline-flex items-center gap-2" aria-label="Scroll to explore"
+          animate={{ y: [0, 4, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}>
+          SCROLL TO EXPLORE <ChevronDown className="size-4" />
+        </motion.a>
         <div className="md:absolute md:inset-x-0 md:top-48">
           <div className="container-page flex justify-end">
             <div className="pointer-events-auto w-[420px] max-w-full rounded-2xl border p-6 shadow-lg backdrop-blur-md mx-4 mt-6 mb-8 md:mx-0 md:mt-0 md:mb-0" style={{ background: 'var(--glass-bg)', borderColor: 'var(--glass-border)' }}>
@@ -70,7 +77,7 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section className="container-page py-16 md:py-24">
+      <section id="services" className="container-page py-16 md:py-24">
         <div className="flex items-end justify-between">
           <motion.h2 {...fadeUp} className="display text-4xl font-semibold tracking-tight">
             Services that <span className="block sm:inline">move the needle</span>

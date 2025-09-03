@@ -111,15 +111,17 @@ body { @apply bg-background text-foreground font-sans leading-relaxed; }
 .hover-glow::after {
   content: "";
   position: absolute;
-  inset: -12px;
-  border-radius: 24px;
-  background: radial-gradient(64% 64% at 50% 40%, rgba(255,59,48,0.22), transparent 72%);
-  filter: blur(22px);
+  inset: -18px;
+  border-radius: 28px;
+  background:
+    radial-gradient(70% 70% at 50% 40%, rgba(255,59,48,0.35), rgba(255,59,48,0.18) 40%, transparent 75%);
+  filter: blur(26px);
+  box-shadow: 0 22px 54px rgba(255,59,48,0.28), 0 8px 20px rgba(255,59,48,0.18);
   opacity: 0;
-  transition: opacity .28s ease, transform .28s ease;
+  transition: opacity .3s ease, transform .3s ease;
   z-index: 0;
 }
-.hover-glow:hover::after { opacity: .95; transform: scale(1.04); }
+.hover-glow:hover::after { opacity: 1; transform: scale(1.06); }
 .hover-glow > * { position: relative; z-index: 1; }
 
 /* Typography */

@@ -58,30 +58,31 @@ export default function BlogPage() {
         <h2 className="text-xl font-semibold">Featured Articles</h2>
         <div className="mt-4 grid gap-6 md:grid-cols-2">
           {featured.map((p, i) => (
-            <motion.article
-              key={p.slug}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="card overflow-hidden group hover:shadow-xl transition-all hover-glow"
-            >
-              <Link href={`/blog/${p.slug}`} className="block group/image">
-                <div className="relative aspect-[16/9] overflow-hidden">
-                  <Image src={p.image} alt={p.imageAlt} fill className="object-cover transition-transform duration-500 group-hover/image:scale-105 group-hover:scale-105" />
-                  <div className="absolute left-3 top-3 rounded-full px-2 py-1 text-xs font-medium shadow" style={{ background: 'var(--accent-hex)', color: 'white' }}>{p.category}</div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground group-hover/image:scale-[1.01] transition-transform">
-                    <span className="inline-flex items-center gap-1"><Calendar className="size-3" /> {new Date(p.date).toLocaleDateString()}</span>
-                    <span className="inline-flex items-center gap-1"><Clock className="size-3" /> {p.readMins} min read</span>
+            <div key={p.slug} className="hover-glow group">
+              <motion.article
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="card overflow-hidden hover:shadow-xl transition-all"
+              >
+                <Link href={`/blog/${p.slug}`} className="block group/image">
+                  <div className="relative aspect-[16/9] overflow-hidden">
+                    <Image src={p.image} alt={p.imageAlt} fill className="object-cover transition-transform duration-500 group-hover/image:scale-105 group-hover:scale-105" />
+                    <div className="absolute left-3 top-3 rounded-full px-2 py-1 text-xs font-medium shadow" style={{ background: 'var(--accent-hex)', color: 'white' }}>{p.category}</div>
                   </div>
-                  <h3 className="mt-3 text-lg md:text-xl font-semibold">{p.title}</h3>
-                  <p className="mt-2 text-muted-foreground leading-6">{p.excerpt}</p>
-                  <span className="mt-3 inline-flex items-center gap-1 text-[var(--accent-hex)] font-medium">Read Article <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span>
-                </div>
-              </Link>
-            </motion.article>
+                  <div className="p-6">
+                    <div className="flex items-center gap-4 text-xs text-muted-foreground group-hover/image:scale-[1.01] transition-transform">
+                      <span className="inline-flex items-center gap-1"><Calendar className="size-3" /> {new Date(p.date).toLocaleDateString()}</span>
+                      <span className="inline-flex items-center gap-1"><Clock className="size-3" /> {p.readMins} min read</span>
+                    </div>
+                    <h3 className="mt-3 text-lg md:text-xl font-semibold">{p.title}</h3>
+                    <p className="mt-2 text-muted-foreground leading-6">{p.excerpt}</p>
+                    <span className="mt-3 inline-flex items-center gap-1 text-[var(--accent-hex)] font-medium">Read Article <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span>
+                  </div>
+                </Link>
+              </motion.article>
+            </div>
           ))}
         </div>
       </section>
@@ -92,30 +93,31 @@ export default function BlogPage() {
           <h2 className="text-xl font-semibold">More Articles</h2>
           <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {more.map((p, i) => (
-              <motion.article
-                key={p.slug}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="card overflow-hidden group hover:shadow-lg transition-all hover-glow"
-              >
-                <Link href={`/blog/${p.slug}`} className="block group/image">
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image src={p.image} alt={p.imageAlt} fill className="object-cover transition-transform duration-500 group-hover/image:scale-105 group-hover:scale-105" />
-                    <div className="absolute left-3 top-3 rounded-full px-2 py-1 text-xs font-medium shadow inline-flex items-center gap-1" style={{ background: 'var(--accent-hex)', color: 'white' }}><Tag className="size-3" /> {p.category}</div>
-                  </div>
-                  <div className="p-5">
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground transition-transform group-hover/image:scale-[1.01]">
-                      <span className="inline-flex items-center gap-1"><Calendar className="size-3" /> {new Date(p.date).toLocaleDateString()}</span>
-                      <span className="inline-flex items-center gap-1"><Clock className="size-3" /> {p.readMins} min read</span>
+              <div key={p.slug} className="hover-glow group">
+                <motion.article
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.06 }}
+                  className="card overflow-hidden hover:shadow-lg transition-all"
+                >
+                  <Link href={`/blog/${p.slug}`} className="block group/image">
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <Image src={p.image} alt={p.imageAlt} fill className="object-cover transition-transform duration-500 group-hover/image:scale-105 group-hover:scale-105" />
+                      <div className="absolute left-3 top-3 rounded-full px-2 py-1 text-xs font-medium shadow inline-flex items-center gap-1" style={{ background: 'var(--accent-hex)', color: 'white' }}><Tag className="size-3" /> {p.category}</div>
                     </div>
-                    <h3 className="mt-2 text-base font-semibold leading-tight">{p.title}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{p.excerpt}</p>
-                    <span className="mt-3 inline-flex items-center gap-1 text-[var(--accent-hex)] font-medium">Read Article <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span>
-                  </div>
-                </Link>
-              </motion.article>
+                    <div className="p-5">
+                      <div className="flex items-center gap-4 text-xs text-muted-foreground transition-transform group-hover/image:scale-[1.01]">
+                        <span className="inline-flex items-center gap-1"><Calendar className="size-3" /> {new Date(p.date).toLocaleDateString()}</span>
+                        <span className="inline-flex items-center gap-1"><Clock className="size-3" /> {p.readMins} min read</span>
+                      </div>
+                      <h3 className="mt-2 text-base font-semibold leading-tight">{p.title}</h3>
+                      <p className="mt-2 text-sm text-muted-foreground">{p.excerpt}</p>
+                      <span className="mt-3 inline-flex items-center gap-1 text-[var(--accent-hex)] font-medium">Read Article <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span>
+                    </div>
+                  </Link>
+                </motion.article>
+              </div>
             ))}
           </div>
         </section>

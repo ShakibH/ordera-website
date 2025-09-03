@@ -19,7 +19,7 @@ const DEFAULT_HERO_IMAGE = process.env.NEXT_PUBLIC_HERO_IMAGE_URL || "/rocket-he
 export default function Home() {
   const [heroSrc, setHeroSrc] = React.useState<string>(`${DEFAULT_HERO_IMAGE}?v=1`);
   const { scrollY } = useScroll();
-  const parallaxY = useTransform(scrollY, [0, 600], [0, 60]);
+  const parallaxY = useTransform(scrollY, [0, 1200], [0, 320]);
   return (
     <div>
       {/* New Rocket Hero */}
@@ -60,7 +60,7 @@ export default function Home() {
         {/* Scroll indicator */}
         <motion.a href="#services" className="absolute left-1/2 -translate-x-1/2 bottom-6 text-white/80 text-xs tracking-[0.2em] uppercase inline-flex items-center gap-2" aria-label="Scroll to explore"
           animate={{ y: [0, 4, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}>
-          SCROLL TO EXPLORE <ChevronDown className="size-4" />
+          SCROLL TO EXPLORE <ChevronDown className="size-4 text-[var(--accent-hex)]" />
         </motion.a>
         <div className="md:absolute md:inset-x-0 md:top-48">
           <div className="container-page flex justify-end">

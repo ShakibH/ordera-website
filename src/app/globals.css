@@ -107,14 +107,14 @@ body { @apply bg-background text-foreground font-sans leading-relaxed; }
 .glow:hover::before { opacity: .6; transform: scale(1.02); }
 
 /* Hover gradient glow behind cards */
-.hover-glow { position: relative; }
+.hover-glow { position: relative; border-radius: 16px; }
 .hover-glow::after {
   content: "";
   position: absolute;
-  inset: -18px;
-  border-radius: 28px;
+  inset: 0;
+  border-radius: inherit;
   background:
-    radial-gradient(70% 70% at 50% 40%, rgba(255,59,48,0.35), rgba(255,59,48,0.18) 40%, transparent 75%);
+    radial-gradient(closest-side at 50% 50%, rgba(255,59,48,0.42), rgba(255,59,48,0.22) 40%, transparent 75%);
   filter: blur(26px);
   box-shadow: 0 22px 54px rgba(255,59,48,0.28), 0 8px 20px rgba(255,59,48,0.18);
   opacity: 0;

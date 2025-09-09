@@ -17,6 +17,17 @@ type Post = {
 
 const allPosts: Post[] = [
   {
+    slug: "ethical-ai-legal-by-design",
+    title: "Ethical AI, Legal by Design: A Practical Playbook for Aligning AI with Privacy Laws",
+    excerpt:
+      "A practical playbook to align AI ethics with privacy and regulation using GDPR, DPIAs, NIST AI RMF, and ISO standards.",
+    date: "2025-09-06",
+    readMins: 9,
+    category: "AI Ethics",
+    image: "/Ethical AI, Blog 4.png",
+    imageAlt: "Soft orange clouds representing ethical AI by design",
+  },
+  {
     slug: "empowering-employees-with-ai",
     title: "Empowering Employees with AI and Automations",
     excerpt:

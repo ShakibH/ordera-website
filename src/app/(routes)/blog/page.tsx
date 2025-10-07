@@ -17,6 +17,17 @@ type Post = {
 
 const allPosts: Post[] = [
   {
+    slug: "rise-of-digital-co-workers",
+    title: "The Rise of Digital Co-Workers: How Autonomous AI Agents Are Changing Enterprise Workflows",
+    excerpt:
+      "Autonomous AI agents are entering everyday SaaS. How 'digital co-workers' streamline workflows, raise productivity, and how to adopt them safely.",
+    date: "2025-10-07",
+    readMins: 8,
+    category: "AI Operations",
+    image: "/Rise of Digital Co-Workers.png",
+    imageAlt: "Illustration of AI agents collaborating with workers across SaaS tools",
+  },
+  {
     slug: "ethical-ai-legal-by-design",
     title: "Ethical AI, Legal by Design: A Practical Playbook for Aligning AI with Privacy Laws",
     excerpt:

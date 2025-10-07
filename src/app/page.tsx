@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import type { MotionProps, Transition } from "framer-motion";
 import { Rocket, Shield, Workflow, ChevronDown } from "lucide-react";
+import { getLatestPosts } from "./(routes)/blog/posts";
 
 const ease: Transition["ease"] = [0.22, 1, 0.36, 1];
 const fadeUp: MotionProps = {
@@ -154,6 +155,33 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Latest Insights */}
+      <section className="container-page pb-20">
+        <div className="flex items-end justify-between">
+          <motion.h2 {...fadeUp} className="display text-4xl font-semibold tracking-tight">Latest Insights</motion.h2>
+          <motion.div {...fadeUp}>
+            <Link href="/blog" className="text-[var(--accent-hex)] hover:underline text-sm font-medium inline-flex items-center gap-1">View all articles <span aria-hidden>→</span></Link>
+          </motion.div>
+        </div>
+        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {getLatestPosts(3).map((p, i) => (
+            <motion.article key={p.slug} {...fadeUp} className="card overflow-hidden hover:shadow-lg transition-all">
+              <Link href={`/blog/${p.slug}`} className="block group">
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <Image src={p.image} alt={p.imageAlt} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute left-3 top-3 rounded-full px-2 py-1 text-xs font-medium shadow" style={{ background: 'var(--accent-hex)', color: 'white' }}>{p.category}</div>
+                </div>
+                <div className="p-5">
+                  <h3 className="text-base md:text-lg font-semibold leading-tight">{p.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{p.excerpt}</p>
+                  <span className="mt-3 inline-flex items-center gap-1 text-[var(--accent-hex)] font-medium">Read Article <span aria-hidden>→</span></span>
+                </div>
+              </Link>
+            </motion.article>
+          ))}
+        </div>
+      </section>
+
       {/* Newsletter (moved here between Stats and Testimonials; mobile-friendly form) */}
       <section className="container-page pb-24">
         <motion.div {...fadeUp} className="relative overflow-hidden rounded-2xl border static-glow">
@@ -190,9 +218,9 @@ export default function Home() {
         <motion.h2 {...fadeUp} className="display text-4xl font-semibold tracking-tight">What clients say</motion.h2>
         <div className="mt-6 grid gap-6 md:grid-cols-3">
           {[
-            { quote: "Ordera helped us automate intake while staying PHIPA-compliant.", name: "Maya Singh", title: "Clinic Director", company: "HealthCo" },
-            { quote: "We shipped faster and cut ops costs in a month.", name: "Ethan Brooks", title: "Head of Engineering", company: "NorthPeak" },
-            { quote: "They brought structure and warmth—rare combo.", name: "Lena Morales", title: "Operations Lead", company: "Atlas Manufacturing" },
+            { quote: "Ordera automated our warranty intake end‑to‑end while keeping audits clean. Lead time dropped 41% in the first month.", name: "Matthias F.", title: "Program Manager, Digitalization", company: "Continental Automotive" },
+            { quote: "Their team helped us stand up agentic workflows across HubSpot and Slack. SDR follow‑ups doubled without adding headcount.", name: "Sarah K.", title: "Director of RevOps", company: "Kanu Marketing" },
+            { quote: "We co‑built a compliant AI assistant for webinar content ops. Turnaround went from days to hours, and legal was happy from day one.", name: "Luis R.", title: "Head of Platform", company: "webinar.com" },
           ].map((t, i) => (
             <motion.figure key={i} {...fadeUp} className="card p-6">
               <blockquote className="text-lg">“{t.quote}”</blockquote>

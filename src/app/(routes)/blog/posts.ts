@@ -22,6 +22,17 @@ export const allPosts: Post[] = [
     imageAlt: "Illustration of AI agents collaborating with workers across SaaS tools",
   },
   {
+    slug: "ai-voice-agents-reimagining-patient-communication",
+    title: "AI Voice Agents Are Reimagining Patient Communication",
+    excerpt:
+      "How HIPAA-compliant AI voice agents like Hello Patient reduce admin load, improve access, and boost patient satisfaction across healthcare.",
+    date: "2025-10-08",
+    readMins: 7,
+    category: "Healthcare AI",
+    image: "/AI Voice Agents Are Reimagining Patient Communication.png",
+    imageAlt: "AI voice agents improving patient communication in healthcare",
+  },
+  {
     slug: "ethical-ai-legal-by-design",
     title: "Ethical AI, Legal by Design: A Practical Playbook for Aligning AI with Privacy Laws",
     excerpt:
@@ -72,5 +83,6 @@ export function getLatestPosts(count: number = 3): Post[] {
     .sort((a, b) => +new Date(b.date) - +new Date(a.date))
     .slice(0, count);
 }
+
 
 

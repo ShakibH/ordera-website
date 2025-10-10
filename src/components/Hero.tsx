@@ -35,13 +35,12 @@ export default function Hero() {
           <span>Big-firm</span><br />
           <span>consulting,</span><br />
           <span style={{ color: 'var(--accent-hex)' }}>scaled to fit</span><br />
-          <span>your</span><br />
-          <span>business.</span>
+          <span>your business</span>
         </h1>
 
         {/* Subheadline */}
         <p className="mt-6 max-w-3xl text-lg md:text-xl text-white/90">
-          Ordera brings enterprise-grade AI strategy and compliance expertise to SMBs—without the bloated costs.
+        Get expert support in product management, workflow automation, and compliance—tailored for lean teams ready to scale.
         </p>
 
         {/* CTAs */}

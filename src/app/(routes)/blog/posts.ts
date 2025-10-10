@@ -11,6 +11,17 @@ export type Post = {
 
 export const allPosts: Post[] = [
   {
+    slug: "lessons-from-sora-2",
+    title: "Lessons from Sora 2’s Launch: How to Adopt AI Video Responsibly",
+    excerpt:
+      "Sora 2’s hype met real-world constraints. Learn how to use AI video safely with clear policies, original content, and governance that protects your brand.",
+    date: "2025-10-10",
+    readMins: 7,
+    category: "AI Ethics",
+    image: "/Lessons from Sora 2.png",
+    imageAlt: "Abstract visuals representing responsible AI video adoption",
+  },
+  {
     slug: "rise-of-digital-co-workers",
     title: "The Rise of Digital Co-Workers: How Autonomous AI Agents Are Changing Enterprise Workflows",
     excerpt:

@@ -16,6 +16,19 @@ export const metadata: Metadata = {
   description:
     "Premium AI consulting and automation for SMBs in health, tech, and manufacturing. Clear. Compliant. ROI-focused.",
   // Use relative metadata to avoid mismatched host in dev
+  metadataBase: new URL("https://orderaconsulting.com"),
+  // No site-wide canonical; set per-route where relevant
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     title: "Ordera Consulting — AI Strategy, Automation & Compliance",
     description:

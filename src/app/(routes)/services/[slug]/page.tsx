@@ -12,9 +12,11 @@ const services = [
 ];
 
 type Params = { slug: string };
+type Props = { params: Promise<Params> };
 
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const svc = services.find((s) => s.slug === params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const svc = services.find((s) => s.slug === slug);
   if (!svc) return {};
   return {
     title: svc.title,
@@ -23,8 +25,9 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   };
 }
 
-export default function ServiceDetailPage({ params }: { params: Params }) {
-  const svc = services.find((s) => s.slug === params.slug);
+export default async function ServiceDetailPage({ params }: Props) {
+  const { slug } = await params;
+  const svc = services.find((s) => s.slug === slug);
   if (!svc) return notFound();
 
   return (

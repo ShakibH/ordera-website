@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import PostContactForm from "@/components/PostContactForm";
 import SharePanel from "@/components/SharePanel";

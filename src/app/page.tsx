@@ -164,7 +164,7 @@ export default function Home() {
           </motion.div>
         </div>
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {getLatestPosts(3).map((p, i) => (
+          {getLatestPosts(3).map((p) => (
             <motion.article key={p.slug} {...fadeUp} className="card overflow-hidden hover:shadow-lg transition-all">
               <Link href={`/blog/${p.slug}`} className="block group">
                 <div className="relative aspect-[16/9] overflow-hidden">

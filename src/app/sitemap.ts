@@ -1,32 +1,25 @@
 import type { MetadataRoute } from "next";
+import { allPosts } from "./(routes)/blog/posts";
 
 const BASE_URL = "https://orderaconsulting.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Static routes
+  const now = new Date();
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${BASE_URL}/`, changeFrequency: "weekly" },
-    { url: `${BASE_URL}/services`, changeFrequency: "weekly" },
-    { url: `${BASE_URL}/compliance`, changeFrequency: "monthly" },
-    { url: `${BASE_URL}/quiz`, changeFrequency: "monthly" },
-    { url: `${BASE_URL}/blog`, changeFrequency: "weekly" },
-    { url: `${BASE_URL}/contact`, changeFrequency: "yearly" },
+    { url: `${BASE_URL}/`, changeFrequency: "weekly", lastModified: now },
+    { url: `${BASE_URL}/services`, changeFrequency: "weekly", lastModified: now },
+    { url: `${BASE_URL}/compliance`, changeFrequency: "monthly", lastModified: now },
+    { url: `${BASE_URL}/quiz`, changeFrequency: "monthly", lastModified: now },
+    { url: `${BASE_URL}/blog`, changeFrequency: "weekly", lastModified: now },
+    { url: `${BASE_URL}/contact`, changeFrequency: "yearly", lastModified: now },
   ];
 
   // Blog routes (manually mirror slugs from blog data)
-  const blogSlugs = [
-    "lessons-from-sora-2",
-    "rise-of-digital-co-workers",
-    "ai-voice-agents-reimagining-patient-communication",
-    "ethical-ai-legal-by-design",
-    "empowering-employees-with-ai",
-    "building-trust-in-ai",
-    "safe-ai-adoption-five-rules",
-    "roi-from-ai",
-  ];
-  const blogRoutes: MetadataRoute.Sitemap = blogSlugs.map((slug) => ({
-    url: `${BASE_URL}/blog/${slug}`,
+  const blogRoutes: MetadataRoute.Sitemap = allPosts.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
     changeFrequency: "weekly",
+    lastModified: new Date(post.date),
   }));
 
   // Service detail routes
@@ -41,6 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const serviceRoutes: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
     url: `${BASE_URL}/services/${slug}`,
     changeFrequency: "monthly",
+    lastModified: now,
   }));
 
   return [...staticRoutes, ...blogRoutes, ...serviceRoutes];
